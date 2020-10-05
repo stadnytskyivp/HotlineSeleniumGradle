@@ -8,7 +8,7 @@ public class CurrentEnv {
 
     public Browser getBrowserType() {
         if (browser == null) {
-            browser = Browser.getByName(getPropertyFromSysPropsOrFile("browser type"));
+            browser = Browser.getByName(getPropertyFromSysPropsOrFile("browserType"));
         }
         return browser;
     }
@@ -16,5 +16,9 @@ public class CurrentEnv {
     public String getPropertyFromSysPropsOrFile(String prop) {
         String systemProperty = System.getProperty(prop);
         return systemProperty != null ? systemProperty : propertyLoader.getProperty(prop);
+    }
+
+    public String getRunType() {
+        return getPropertyFromSysPropsOrFile("runType");
     }
 }

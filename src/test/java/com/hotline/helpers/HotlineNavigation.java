@@ -1,10 +1,15 @@
 package com.hotline.helpers;
 
+import com.hotline.pages.HomePage;
+import com.hotline.webdriver.WebDriverFacadeProvider;
+import com.hotline.webdriver.WebDriverFactory;
+
 public class HotlineNavigation {
-    private final String NAVIGATE_MESSAGE_FORMATTER = "Navigate to %s...";
+    protected WebDriverFacadeProvider webDriverFacadeProvider = new WebDriverFacadeProvider(new WebDriverFactory());
 
-    public void toHomePage() {
-
+    public HomePage toHomePage(String url) {
+        webDriverFacadeProvider.get().navigateTo(url);
+        return new HomePage();
     }
 
     public void toLoginPage() {
