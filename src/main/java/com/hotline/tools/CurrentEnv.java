@@ -21,4 +21,8 @@ public class CurrentEnv {
     public String getRunType() {
         return getPropertyFromSysPropsOrFile("runType");
     }
+
+    public int getLongWaitSecondsTimeout() {
+        return Integer.valueOf(getPropertyFromSysPropsOrFile("longWaitSeconds"));
+    }
 }
