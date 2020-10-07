@@ -9,7 +9,7 @@ public class HotlineNavigation {
 
     public WebDriverFacadeProvider getWebDriverFacadeProvider() {
         if (webDriverFacadeProvider == null) {
-            return new WebDriverFacadeProvider(new WebDriverFactory());
+            return new WebDriverFacadeProvider(new WebDriverFactory(null));
         } else {
             return webDriverFacadeProvider;
         }

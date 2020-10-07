@@ -1,7 +1,6 @@
 package com.hotline.elements;
 
 import com.hotline.webdriver.WebDriverFacade;
-import com.hotline.webdriver.WebDriverFactory;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,7 +19,7 @@ public class Element {
 
     public WebDriverFacade getDriver() {
         if (driver == null) {
-            return new WebDriverFacade(new WebDriverFactory());
+            return new WebDriverFacade();
         } else {
             return driver;
         }
@@ -39,19 +38,6 @@ public class Element {
         this.by = null;
         this.waitBeforeUse = false;
         this.webElement = webElement;
-    }
-
-    protected boolean isDisplayed(int seconds) {
-        try {
-            waitUntilVisible(seconds);
-            return true;
-        } catch (TimeoutException | NoSuchElementException | StaleElementReferenceException ignore) {
-            return false;
-        }
-    }
-
-    public boolean isDisplayed() {
-        return isDisplayed(LONG_WAIT_SECONDS);
     }
 
     public WebElement getWebElement() {
@@ -81,9 +67,18 @@ public class Element {
                 parent.findElement(by).getWebElement()));
         } else if (by != null) {
             webElement = new WebDriverWait(getDriver().getBaseDriver(), seconds).until(visibilityOfElementLocated(by));
-        }else if (webElement != null) {
+        } else if (webElement != null) {
             webElement = new WebDriverWait(getDriver().getBaseDriver(), seconds).until(visibilityOf(webElement));
         }
         return this;
+    }
+
+    public boolean isDisplayed() {
+        try {
+            waitUntilVisible(LONG_WAIT_SECONDS);
+            return true;
+        } catch (TimeoutException | NoSuchElementException | StaleElementReferenceException ignore) {
+            return false;
+        }
     }
 }

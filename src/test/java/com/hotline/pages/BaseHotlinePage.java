@@ -2,7 +2,7 @@ package com.hotline.pages;
 
 import com.hotline.modules.HeaderModule;
 
-public class BaseHotlinePage<T extends BaseHotlinePage> {
+public class BaseHotlinePage {
     private HeaderModule headerModule = new HeaderModule();
 
     public HeaderModule getHeaderModule() {

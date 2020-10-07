@@ -1,11 +1,11 @@
 package com.hotline.tests;
 
-import com.hotline.webdriver.WebDriverFacadeProvider;
+import com.hotline.webdriver.WebDriverFacade;
 import org.assertj.core.api.AbstractAssert;
 import org.testng.annotations.AfterMethod;
 
 public abstract class AbstractTestNG {
-    private WebDriverFacadeProvider webDriverFacadeProvider;
+    private WebDriverFacade webDriverFacade;
 
     protected <T extends AbstractAssert> T logAssert(T abstractAssert) {
         return abstractAssert;
@@ -13,6 +13,6 @@ public abstract class AbstractTestNG {
 
 //    @AfterMethod(alwaysRun = true)
 //    public void testTearDown() {
-//        webDriverFacadeProvider.kill();
+//        webDriverFacade.quit();
 //    }
 }

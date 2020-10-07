@@ -12,10 +12,9 @@ public class WebDriverFactory {
     private CurrentEnv currentEnv;
     private MutableCapabilities capabilities;
 
-    public WebDriverFactory(){}
     public WebDriverFactory(CurrentEnv currentEnv) {
         this.currentEnv = currentEnv;
-        if ("local".equals(currentEnv.getRunType())){
+        if (currentEnv != null && "local".equals(currentEnv.getRunType())){
             setupWebDriver();
         }
     }
@@ -40,8 +39,7 @@ public class WebDriverFactory {
         }
     }
 
-    WebDriver getChromeDriver() {
-        WebDriverManager.chromedriver().setup();
+    public static WebDriver getChromeDriver() {
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();

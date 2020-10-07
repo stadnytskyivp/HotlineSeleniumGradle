@@ -10,7 +10,7 @@ public class WebDriverFacadeProvider {
 
     public WebDriverFacade get() {
         if (drivers.get() == null) {
-            drivers.set(new WebDriverFacade(webDriverFactory));
+            drivers.set(new WebDriverFacade());
         }
         return drivers.get();
     }

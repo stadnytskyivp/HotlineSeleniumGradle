@@ -1,4 +1,4 @@
 package com.hotline.pages;
 
-public class HomePage extends BaseHotlinePage<HomePage> {
+public class HomePage extends BaseHotlinePage {
 }

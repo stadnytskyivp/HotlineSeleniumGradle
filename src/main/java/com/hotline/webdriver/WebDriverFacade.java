@@ -5,14 +5,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class WebDriverFacade {
-    private final WebDriver baseDriver;
+    private WebDriver baseDriver;
 
-    public WebDriverFacade(WebDriverFactory webDriverFactory) {
-        this.baseDriver = webDriverFactory.getChromeDriver();
-    }
+    public WebDriverFacade() { }
 
     public WebDriver getBaseDriver() {
-        return baseDriver;
+        if (baseDriver == null) {
+            return WebDriverFactory.getChromeDriver();
+        } else {
+            return baseDriver;
+        }
     }
 
     public void navigateTo(String url) {
