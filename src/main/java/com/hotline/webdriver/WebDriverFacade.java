@@ -8,7 +8,7 @@ public class WebDriverFacade {
     private final WebDriver baseDriver;
 
     public WebDriverFacade(WebDriverFactory webDriverFactory) {
-        this.baseDriver = webDriverFactory.getDriver();
+        this.baseDriver = webDriverFactory.getChromeDriver();
     }
 
     public WebDriver getBaseDriver() {
@@ -21,5 +21,9 @@ public class WebDriverFacade {
 
     public WebElement findElement(By by) {
         return getBaseDriver().findElement(by);
+    }
+
+    public void quit() {
+        getBaseDriver().quit();
     }
 }

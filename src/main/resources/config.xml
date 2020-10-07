@@ -9,8 +9,6 @@
     <entry key="threadCount">3</entry>
 
     <entry key="implicitWaitSeconds">2</entry>
-    <entry key="longWaitSeconds">20</entry>
-    <entry key="shortWaitSeconds">4</entry>
 
     <entry key="tempFolder">temp</entry>
 

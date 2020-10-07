@@ -5,10 +5,18 @@ import com.hotline.webdriver.WebDriverFacadeProvider;
 import com.hotline.webdriver.WebDriverFactory;
 
 public class HotlineNavigation {
-    protected WebDriverFacadeProvider webDriverFacadeProvider = new WebDriverFacadeProvider(new WebDriverFactory());
+    private WebDriverFacadeProvider webDriverFacadeProvider;
+
+    public WebDriverFacadeProvider getWebDriverFacadeProvider() {
+        if (webDriverFacadeProvider == null) {
+            return new WebDriverFacadeProvider(new WebDriverFactory());
+        } else {
+            return webDriverFacadeProvider;
+        }
+    }
 
     public HomePage toHomePage(String url) {
-        webDriverFacadeProvider.get().navigateTo(url);
+        getWebDriverFacadeProvider().get().navigateTo(url);
         return new HomePage();
     }
 

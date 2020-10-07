@@ -14,4 +14,14 @@ public class WebDriverFacadeProvider {
         }
         return drivers.get();
     }
+
+    public void kill() {
+        try {
+            drivers.get().quit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            drivers.remove();
+        }
+    }
 }

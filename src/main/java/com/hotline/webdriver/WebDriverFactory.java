@@ -40,7 +40,7 @@ public class WebDriverFactory {
         }
     }
 
-    WebDriver getDriver() {
+    WebDriver getChromeDriver() {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

@@ -1,6 +1,5 @@
 package com.hotline.elements;
 
-import com.hotline.tools.CurrentEnv;
 import com.hotline.webdriver.WebDriverFacade;
 import com.hotline.webdriver.WebDriverFactory;
 import org.openqa.selenium.*;
@@ -10,13 +9,22 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class Element {
-    private static final int LONG_WAIT_SECONDS = 30; //CurrentEnv.getLongWaitSecondsTimeout();
+    private static final int LONG_WAIT_SECONDS = 20;
+    private static final int SHORT_WAIT_SECONDS = 4;
 
     private final By by;
     private boolean waitBeforeUse;
     private Element parent;
     private WebElement webElement;
-    private final WebDriverFacade driver = new WebDriverFacade(new WebDriverFactory());
+    private WebDriverFacade driver;
+
+    public WebDriverFacade getDriver() {
+        if (driver == null) {
+            return new WebDriverFacade(new WebDriverFactory());
+        } else {
+            return driver;
+        }
+    }
 
     public Element(By by) {
         this(by, true);
@@ -50,12 +58,12 @@ public class Element {
         if (webElement == null) {
             if (parent == null) {
                 webElement = waitBeforeUse ?
-                    new WebDriverWait(driver.getBaseDriver(), LONG_WAIT_SECONDS).until(
+                    new WebDriverWait(getDriver().getBaseDriver(), LONG_WAIT_SECONDS).until(
                         visibilityOfElementLocated(by)) :
-                    driver.findElement(by);
+                    getDriver().findElement(by);
             } else {
                 webElement = waitBeforeUse ?
-                    new WebDriverWait(driver.getBaseDriver(), LONG_WAIT_SECONDS).until(
+                    new WebDriverWait(getDriver().getBaseDriver(), LONG_WAIT_SECONDS).until(
                         visibilityOf(parent.findElement(by).getWebElement())) :
                     parent.findElement(by).getWebElement();
             }
@@ -69,12 +77,12 @@ public class Element {
 
     public Element waitUntilVisible(int seconds) {
         if (parent != null) {
-            webElement = new WebDriverWait(driver.getBaseDriver(), seconds).until(visibilityOf(
+            webElement = new WebDriverWait(getDriver().getBaseDriver(), seconds).until(visibilityOf(
                 parent.findElement(by).getWebElement()));
         } else if (by != null) {
-            webElement = new WebDriverWait(driver.getBaseDriver(), seconds).until(visibilityOfElementLocated(by));
+            webElement = new WebDriverWait(getDriver().getBaseDriver(), seconds).until(visibilityOfElementLocated(by));
         }else if (webElement != null) {
-            webElement = new WebDriverWait(driver.getBaseDriver(), seconds).until(visibilityOf(webElement));
+            webElement = new WebDriverWait(getDriver().getBaseDriver(), seconds).until(visibilityOf(webElement));
         }
         return this;
     }
