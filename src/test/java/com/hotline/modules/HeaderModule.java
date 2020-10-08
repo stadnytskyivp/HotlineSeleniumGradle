@@ -10,7 +10,7 @@ public abstract class HeaderModule {
 
     private WebElement logoLink;
     private WebElement cityNameLink;
-    //    private Element chooseLanguage = new Element();
+    private WebElement chooseLanguage;
     private WebElement loginUserLink;
     private WebElement compareItemsLink;
     private WebElement wishListLink;
@@ -24,7 +24,7 @@ public abstract class HeaderModule {
     private void initElements() {
         logoLink = driver.findElement(By.cssSelector(".header-logo"));
         cityNameLink = driver.findElement(By.cssSelector(".city-name"));
-        //    private Element chooseLanguage = new Element();
+        chooseLanguage = driver.findElement(By.xpath("//*[@data-language='uk'][1]"));
         loginUserLink = driver.findElement(By.cssSelector(".item-login"));
         compareItemsLink = driver.findElement(By.cssSelector(".item-compare"));
         wishListLink = driver.findElement(By.cssSelector(".item-wishlist"));
@@ -62,5 +62,9 @@ public abstract class HeaderModule {
     public HomePage gotoHomePage() {
         clickLogo();
         return new HomePage(driver);
+    }
+
+    public WebElement getChooseLanguage() {
+        return chooseLanguage;
     }
 }
