@@ -42,5 +42,20 @@ public class HomePageTest extends BaseTest {
             .gotoHomePage()
             .getChooseLanguage()
             .isDisplayed());
+
+        Assert.assertTrue(openBrowser()
+            .gotoHomePage()
+            .getSearchTopButton()
+            .isDisplayed());
+
+        Assert.assertTrue(openBrowser()
+            .gotoHomePage()
+            .getSearchTopField()
+            .isDisplayed());
+
+        Assert.assertTrue(openBrowser()
+            .gotoHomePage()
+            .getProductCatalog()
+            .isDisplayed());
     }
 }

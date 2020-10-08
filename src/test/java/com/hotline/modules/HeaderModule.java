@@ -15,6 +15,9 @@ public abstract class HeaderModule {
     private WebElement compareItemsLink;
     private WebElement wishListLink;
     private WebElement itemCartLink;
+    private WebElement searchTopButton;
+    private WebElement searchTopField;
+    private WebElement productCatalog;
 
     public HeaderModule(WebDriver driver) {
        this.driver = driver;
@@ -29,6 +32,9 @@ public abstract class HeaderModule {
         compareItemsLink = driver.findElement(By.cssSelector(".item-compare"));
         wishListLink = driver.findElement(By.cssSelector(".item-wishlist"));
         itemCartLink = driver.findElement(By.cssSelector(".item-cart"));
+        searchTopButton = driver.findElement(By.id("doSearch"));
+        searchTopField = driver.findElement(By.id("searchbox"));
+        productCatalog = driver.findElement(By.xpath(".uppercase"));
     }
 
     public WebElement getLogoLink() {
@@ -66,5 +72,17 @@ public abstract class HeaderModule {
 
     public WebElement getChooseLanguage() {
         return chooseLanguage;
+    }
+
+    public WebElement getSearchTopButton() {
+        return searchTopButton;
+    }
+
+    public WebElement getSearchTopField() {
+        return searchTopField;
+    }
+
+    public WebElement getProductCatalog() {
+        return productCatalog;
     }
 }
