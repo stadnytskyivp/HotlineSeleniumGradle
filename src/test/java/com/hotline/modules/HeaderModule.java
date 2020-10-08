@@ -1,38 +1,66 @@
 package com.hotline.modules;
 
+import com.hotline.pages.HomePage;
 import org.openqa.selenium.By;
-import com.hotline.elements.Element;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-public class HeaderModule {
-    private Element logoLink = new Element(By.cssSelector(".header-logo"));
-    private Element cityNameLink = new Element(By.cssSelector(".city-name"));
+public abstract class HeaderModule {
+    protected WebDriver driver;
+
+    private WebElement logoLink;
+    private WebElement cityNameLink;
     //    private Element chooseLanguage = new Element();
-    private Element loginUserLink = new Element(By.cssSelector(".item-login"));
-    private Element compareItemsLink = new Element(By.cssSelector(".item-compare"));
-    private Element wishListLink = new Element(By.cssSelector(".item-wishlist"));
-    private Element itemCartLink = new Element(By.cssSelector(".item-cart"));
+    private WebElement loginUserLink;
+    private WebElement compareItemsLink;
+    private WebElement wishListLink;
+    private WebElement itemCartLink;
 
-    public Element getLogoLink() {
+    public HeaderModule(WebDriver driver) {
+       this.driver = driver;
+       initElements();
+    }
+
+    private void initElements() {
+        logoLink = driver.findElement(By.cssSelector(".header-logo"));
+        cityNameLink = driver.findElement(By.cssSelector(".city-name"));
+        //    private Element chooseLanguage = new Element();
+        loginUserLink = driver.findElement(By.cssSelector(".item-login"));
+        compareItemsLink = driver.findElement(By.cssSelector(".item-compare"));
+        wishListLink = driver.findElement(By.cssSelector(".item-wishlist"));
+        itemCartLink = driver.findElement(By.cssSelector(".item-cart"));
+    }
+
+    public WebElement getLogoLink() {
         return logoLink;
     }
 
-    public Element getCityNameLink() {
+    public WebElement getCityNameLink() {
         return cityNameLink;
     }
 
-    public Element getLoginUserLink() {
+    public WebElement getLoginUserLink() {
         return loginUserLink;
     }
 
-    public Element getCompareItemsLink() {
+    public WebElement getCompareItemsLink() {
         return compareItemsLink;
     }
 
-    public Element getWishListLink() {
+    public WebElement getWishListLink() {
         return wishListLink;
     }
 
-    public Element getItemCartLink() {
+    public WebElement getItemCartLink() {
         return itemCartLink;
+    }
+
+    public void clickLogo() {
+        getLogoLink().click();
+    }
+
+    public HomePage gotoHomePage() {
+        clickLogo();
+        return new HomePage(driver);
     }
 }

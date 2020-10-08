@@ -1,4 +1,11 @@
 package com.hotline.pages;
 
-public class HomePage extends BaseHotlinePage {
+import com.hotline.modules.HeaderModule;
+import org.openqa.selenium.WebDriver;
+
+public class HomePage extends HeaderModule {
+
+    public HomePage(WebDriver driver) {
+        super(driver);
+    }
 }
