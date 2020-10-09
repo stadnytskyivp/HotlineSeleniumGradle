@@ -1,6 +1,7 @@
-package com.hotline.modules;
+package com.hotline.pageobject.modules;
 
-import com.hotline.pages.HomePage;
+import com.hotline.pageobject.pages.HomePage;
+import com.hotline.pageobject.pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,7 +35,7 @@ public abstract class HeaderModule {
         itemCartLink = driver.findElement(By.cssSelector(".item-cart"));
         searchTopButton = driver.findElement(By.id("doSearch"));
         searchTopField = driver.findElement(By.id("searchbox"));
-        productCatalog = driver.findElement(By.xpath(".uppercase"));
+        productCatalog = driver.findElement(By.cssSelector(".uppercase"));
     }
 
     public WebElement getLogoLink() {
@@ -84,5 +85,14 @@ public abstract class HeaderModule {
 
     public WebElement getProductCatalog() {
         return productCatalog;
+    }
+
+    public void clickLogin() {
+        getLoginUserLink().click();
+    }
+
+    public LoginPage gotoLoginPage() {
+        clickLogin();
+        return new LoginPage(driver);
     }
 }

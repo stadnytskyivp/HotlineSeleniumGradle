@@ -1,7 +1,7 @@
 package com.hotline.tests;
 
 import com.hotline.helpers.HotlineConstants;
-import com.hotline.pages.HomePage;
+import com.hotline.pageobject.pages.HomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

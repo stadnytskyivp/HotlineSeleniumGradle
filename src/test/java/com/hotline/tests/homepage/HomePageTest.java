@@ -1,60 +1,53 @@
 package com.hotline.tests.homepage;
 
+import com.hotline.pageobject.pages.HomePage;
 import com.hotline.tests.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HomePageTest extends BaseTest {
-
     @Test
     public void checkHeaderElementsPresenceTest() {
-        Assert.assertTrue(openBrowser()
-            .gotoHomePage()
+        HomePage homePage = openBrowser()
+            .gotoHomePage();
+
+        Assert.assertTrue(homePage
             .getLogoLink()
             .isDisplayed());
 
-        Assert.assertTrue(openBrowser()
-            .gotoHomePage()
+        Assert.assertTrue(homePage
             .getCityNameLink()
             .isDisplayed());
 
-        Assert.assertTrue(openBrowser()
-            .gotoHomePage()
+        Assert.assertTrue(homePage
             .getCompareItemsLink()
             .isDisplayed());
 
-        Assert.assertTrue(openBrowser()
-            .gotoHomePage()
+        Assert.assertTrue(homePage
             .getItemCartLink()
             .isDisplayed());
 
-        Assert.assertTrue(openBrowser()
-            .gotoHomePage()
+        Assert.assertTrue(homePage
             .getLoginUserLink()
             .isDisplayed());
 
-        Assert.assertTrue(openBrowser()
-            .gotoHomePage()
+        Assert.assertTrue(homePage
             .getWishListLink()
             .isDisplayed());
 
-        Assert.assertTrue(openBrowser()
-            .gotoHomePage()
+        Assert.assertTrue(homePage
             .getChooseLanguage()
             .isDisplayed());
 
-        Assert.assertTrue(openBrowser()
-            .gotoHomePage()
+        Assert.assertTrue(homePage
             .getSearchTopButton()
             .isDisplayed());
 
-        Assert.assertTrue(openBrowser()
-            .gotoHomePage()
+        Assert.assertTrue(homePage
             .getSearchTopField()
             .isDisplayed());
 
-        Assert.assertTrue(openBrowser()
-            .gotoHomePage()
+        Assert.assertTrue(homePage
             .getProductCatalog()
             .isDisplayed());
     }
