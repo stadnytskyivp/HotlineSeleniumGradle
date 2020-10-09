@@ -12,28 +12,11 @@ public class LoginPageTest extends BaseTest {
         LoginPage loginPage = openBrowser()
             .gotoLoginPage();
 
-        Assert.assertTrue(loginPage
-            .getHeaderLogoLink()
-            .isDisplayed());
-
-        Assert.assertTrue(loginPage
-            .getLoginField()
-            .isDisplayed());
-
-        Assert.assertTrue(loginPage
-            .getPasswordField()
-            .isDisplayed());
-
-        Assert.assertTrue(loginPage
-            .getSubmitBtn()
-            .isDisplayed());
-
-        Assert.assertTrue(loginPage
-            .getForgotPasswordLink()
-            .isDisplayed());
-
-        Assert.assertTrue(loginPage
-            .getRegisterLink()
-            .isDisplayed());
+        Assert.assertTrue(loginPage.getHeaderLogoLink().isDisplayed());
+        Assert.assertTrue(loginPage.getLoginField().isDisplayed());
+        Assert.assertTrue(loginPage.getPasswordField().isDisplayed());
+        Assert.assertTrue(loginPage.getSubmitBtn().isDisplayed());
+        Assert.assertTrue(loginPage.getForgotPasswordLink().isDisplayed());
+        Assert.assertTrue(loginPage.getRegisterLink().isDisplayed());
     }
 }

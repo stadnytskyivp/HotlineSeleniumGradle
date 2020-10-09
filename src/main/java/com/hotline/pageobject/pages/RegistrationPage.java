@@ -31,4 +31,8 @@ public class RegistrationPage extends AuthorizationPage {
     public WebElement getShowPasswordBtn() {
         return showPasswordBtn;
     }
+
+    public RegistrationFinalPage gotoRegistrationFinalPage() {
+        return new RegistrationFinalPage(driver);
+    }
 }
