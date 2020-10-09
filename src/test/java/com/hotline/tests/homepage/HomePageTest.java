@@ -1,42 +1,61 @@
 package com.hotline.tests.homepage;
 
-import com.hotline.helpers.HotlineConstants;
-import com.hotline.pages.HomePage;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import com.hotline.tests.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.hotline.pages.*;
 
-import java.util.concurrent.TimeUnit;
-
-public class HomePageTest {
-    static WebDriver driver;
-
-    @BeforeSuite
-    protected void setUpBrowser() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-    }
-
-    @BeforeMethod
-    public void beforeMethod() {
-        driver.get(HotlineConstants.BASE_URL);
-    }
+public class HomePageTest extends BaseTest {
 
     @Test
     public void checkHeaderElementsPresenceTest() {
-        HomePage startPage = new HomePage(driver);
+        Assert.assertTrue(openBrowser()
+            .gotoHomePage()
+            .getLogoLink()
+            .isDisplayed());
 
-    }
+        Assert.assertTrue(openBrowser()
+            .gotoHomePage()
+            .getCityNameLink()
+            .isDisplayed());
 
-    @AfterSuite
-    protected void closeBrowser() {
-        driver.close();
+        Assert.assertTrue(openBrowser()
+            .gotoHomePage()
+            .getCompareItemsLink()
+            .isDisplayed());
+
+        Assert.assertTrue(openBrowser()
+            .gotoHomePage()
+            .getItemCartLink()
+            .isDisplayed());
+
+        Assert.assertTrue(openBrowser()
+            .gotoHomePage()
+            .getLoginUserLink()
+            .isDisplayed());
+
+        Assert.assertTrue(openBrowser()
+            .gotoHomePage()
+            .getWishListLink()
+            .isDisplayed());
+
+        Assert.assertTrue(openBrowser()
+            .gotoHomePage()
+            .getChooseLanguage()
+            .isDisplayed());
+
+        Assert.assertTrue(openBrowser()
+            .gotoHomePage()
+            .getSearchTopButton()
+            .isDisplayed());
+
+        Assert.assertTrue(openBrowser()
+            .gotoHomePage()
+            .getSearchTopField()
+            .isDisplayed());
+
+        Assert.assertTrue(openBrowser()
+            .gotoHomePage()
+            .getProductCatalog()
+            .isDisplayed());
     }
 }
