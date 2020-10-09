@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends AuthorizationPage {
-
     private WebElement submitBtn;
     private WebElement forgotPasswordLink;
     private WebElement registerLink;
