@@ -1,5 +1,6 @@
 package com.hotline.pageobject.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,6 +33,7 @@ public class LoginPage extends AuthorizationPage {
         return registerLink;
     }
 
+    @Step("Going to the registration page")
     public RegistrationPage gotoRegistrationPage() {
         clickRegister();
         return new RegistrationPage(driver);

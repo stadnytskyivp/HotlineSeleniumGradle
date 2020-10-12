@@ -2,6 +2,7 @@ package com.hotline.pageobject.modules;
 
 import com.hotline.pageobject.pages.HomePage;
 import com.hotline.pageobject.pages.LoginPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -66,6 +67,7 @@ public abstract class HeaderModule {
         getLogoLink().click();
     }
 
+    @Step("Going to the home page")
     public HomePage gotoHomePage() {
         clickLogo();
         return new HomePage(driver);
@@ -91,6 +93,7 @@ public abstract class HeaderModule {
         getLoginUserLink().click();
     }
 
+    @Step("Going to the login page")
     public LoginPage gotoLoginPage() {
         clickLogin();
         return new LoginPage(driver);
