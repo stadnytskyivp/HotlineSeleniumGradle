@@ -39,12 +39,9 @@ public class RegistrationTest extends BaseTest {
             .getNameField()
             .sendKeys(String.valueOf(new Formatter().format("Vova_%s", ReusableMethods.getRandomUsername())));
 
-        registrationPage.getPasswordField().sendKeys("13245678");
+        registrationPage.getPasswordField().sendKeys(ReusableMethods.getRandomUsername());
         registrationPage.getShowPasswordBtn().click();
-        testWaits(2);
-
         registrationPage.getRegisterBtn().click();
-        testWaits(3);
 
         Assert.assertTrue(registrationPage.gotoRegistrationFinalPage().isCodeFieldEnabled(),
             "expecting to see final registration page with enabled code confirmation field");

@@ -13,7 +13,7 @@ public class RegistrationFinalPage {
     public RegistrationFinalPage(WebDriver driver) {
         this.driver = driver;
         headerLogoLink = driver.findElement(By.cssSelector(".header-short"));
-        codeField = driver.findElement(By.cssSelector(".field"));
+        codeField = driver.findElement(By.xpath("//*[@type='code']"));
     }
 
     public WebElement getCodeField() {

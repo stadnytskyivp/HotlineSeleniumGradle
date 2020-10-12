@@ -2,10 +2,13 @@ package com.hotline.tests.loginpage;
 
 import com.hotline.pageobject.pages.LoginPage;
 import com.hotline.tests.BaseTest;
+import com.hotline.user.UserInfo;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
 
 public class LoginPageTest extends BaseTest {
     @Description("Verify that we see all elements of login page")
@@ -21,5 +24,19 @@ public class LoginPageTest extends BaseTest {
         Assert.assertTrue(loginPage.getSubmitBtn().isDisplayed(), "expecting to see submit button");
         Assert.assertTrue(loginPage.getForgotPasswordLink().isDisplayed(), "expecting to see forgot password link");
         Assert.assertTrue(loginPage.getRegisterLink().isDisplayed(), "expecting to see register link");
+    }
+
+    @Description("Verify that user can login with valid credentials")
+    @Test
+    public void loginValidUser() throws IOException {
+        Allure.step("Start test login user with valid credentials");
+        LoginPage loginPage = openBrowser().gotoLoginPage();
+
+        loginPage.getLoginField().sendKeys(UserInfo.myUser().getLogin());
+        loginPage.getPasswordField().sendKeys(UserInfo.myUser().getPassword());
+        loginPage.getSubmitBtn().click();
+
+//        Assert.assertTrue(loginPage.gotoRegistrationFinalPage().isCodeFieldEnabled(),
+//            "expecting to see final registration page with enabled code confirmation field");
     }
 }
