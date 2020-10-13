@@ -36,7 +36,6 @@ public class LoginPageTest extends BaseTest {
         loginPage.getPasswordField().sendKeys(UserInfo.myUser().getPassword());
         loginPage.getSubmitBtn().click();
 
-//        Assert.assertTrue(loginPage.gotoRegistrationFinalPage().isCodeFieldEnabled(),
-//            "expecting to see final registration page with enabled code confirmation field");
+        // test in progress
     }
 }

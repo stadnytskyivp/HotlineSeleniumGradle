@@ -23,10 +23,6 @@ public abstract class HeaderModule {
 
     public HeaderModule(WebDriver driver) {
        this.driver = driver;
-       initElements();
-    }
-
-    private void initElements() {
         logoLink = driver.findElement(By.cssSelector(".header-logo"));
         cityNameLink = driver.findElement(By.cssSelector(".city-name"));
         chooseLanguage = driver.findElement(By.xpath("//*[@data-language='uk'][1]"));

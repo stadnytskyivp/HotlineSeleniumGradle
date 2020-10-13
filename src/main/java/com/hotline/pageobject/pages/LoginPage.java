@@ -12,10 +12,6 @@ public class LoginPage extends AuthorizationPage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        initElements();
-    }
-
-    private void initElements() {
         submitBtn = driver.findElement(By.xpath("//*[@data-id='verification']"));
         forgotPasswordLink = driver.findElement(By.xpath("//*[@href='/reminder/']"));
         registerLink = driver.findElement(By.xpath("//*[@href='/register/']"));

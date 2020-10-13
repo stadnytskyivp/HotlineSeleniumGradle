@@ -8,13 +8,10 @@ public class RegistrationPage extends AuthorizationPage {
     private WebElement nameField;
     private WebElement registerBtn;
     private WebElement showPasswordBtn;
+    private WebElement errorMsg;
 
     public RegistrationPage (WebDriver driver) {
         super(driver);
-        initElements();
-    }
-
-    private void initElements() {
         nameField = driver.findElement(By.name("name"));
         registerBtn = driver.findElement(By.id("submit-button"));
         showPasswordBtn = driver.findElement(By.cssSelector(".check-view"));
@@ -34,5 +31,14 @@ public class RegistrationPage extends AuthorizationPage {
 
     public RegistrationFinalPage gotoRegistrationFinalPage() {
         return new RegistrationFinalPage(driver);
+    }
+
+    public WebElement getErrorMsg() {
+        errorMsg = driver.findElement(By.cssSelector(".errors"));
+        return errorMsg;
+    }
+
+    public boolean isErrorVisible() {
+        return getErrorMsg().isDisplayed();
     }
 }
