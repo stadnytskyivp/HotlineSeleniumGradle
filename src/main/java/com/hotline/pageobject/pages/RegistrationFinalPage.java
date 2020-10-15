@@ -23,4 +23,17 @@ public class RegistrationFinalPage {
     public boolean isCodeFieldEnabled() {
         return getCodeField().isEnabled();
     }
+
+    public WebElement getHeaderLogoLink() {
+        return headerLogoLink;
+    }
+
+    public HomePage gotoHomePage() {
+        clickLogo();
+        return new HomePage(driver);
+    }
+
+    private void clickLogo() {
+        getHeaderLogoLink().click();
+    }
 }

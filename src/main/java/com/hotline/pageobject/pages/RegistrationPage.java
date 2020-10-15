@@ -1,5 +1,6 @@
 package com.hotline.pageobject.pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,5 +41,12 @@ public class RegistrationPage extends AuthorizationPage {
 
     public boolean isErrorVisible() {
         return getErrorMsg().isDisplayed();
+    }
+
+    public RegistrationPage closeAlert() {
+        Alert alert = driver.switchTo().alert();
+        alert.dismiss();
+//        driver.switchTo().confirmationAlertalert().dismiss();
+        return this;
     }
 }
