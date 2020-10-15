@@ -45,22 +45,9 @@ public class RegistrationNegativeTest extends BaseTest {
         registrationPage.getShowPasswordBtn().click();
         registrationPage.getRegisterBtn().click();
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        RegistrationFinalPage  registrationFinalPage = registrationPage.gotoRegistrationFinalPage();
+        registrationPage = registrationFinalPage.gotoHomePage().gotoLoginPage().gotoRegistrationPage();
 
-        registrationPage.gotoRegistrationFinalPage();
-        // not working at the moment
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        
-        registrationPage.gotoHomePage().gotoLoginPage().gotoRegistrationPage();
         registrationPage.getLoginField().sendKeys(user.getLogin());
         registrationPage.getNameField().sendKeys(user.getName());
         registrationPage.getPasswordField().sendKeys(user.getPassword());
