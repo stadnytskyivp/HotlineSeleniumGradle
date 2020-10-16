@@ -1,11 +1,12 @@
 package com.hotline.helpers;
 
 public enum EErrors {
-    EMPTY_FIELD("Р—Р°РїРѕРІРЅС–С‚СЊ С†Рµ РїРѕР»Рµ"),
-    WRONG_DATA_FORMAT("РџРѕР»Рµ РЅРµ РІС–РґРїРѕРІС–РґР°С” С„РѕСЂРјР°С‚Сѓ"),
-    TYPE_EMAIL_OR_PHONE("Р’РІРµРґС–С‚СЊ email Р°Р±Рѕ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅСѓ"),
-    EMAIL_OR_PHONE_ALREADY_TAKEN("Р’РёР±Р°С‡С‚Рµ, Р°Р»Рµ С‚Р°РєРёР№ email Р°Р±Рѕ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅСѓ РІР¶Рµ Р·Р°Р№РЅСЏС‚РёР№"),
-    PASSWORD_IS_TO_SHORT("Р”РѕРІР¶РёРЅР° РїРѕР»СЏ РЅРµ РјРѕР¶Рµ Р±СѓС‚Рё РјРµРЅС€Рµ 4 С– Р±С–Р»СЊС€Рµ 16 СЃРёРјРІРѕР»С–РІ");
+    EMPTY_FIELD("Заповніть це поле"),
+    WRONG_DATA_FORMAT("Поле не відповідає формату"),
+    TYPE_EMAIL_OR_PHONE("Введіть email або номер телефону"),
+    EMAIL_OR_PHONE_ALREADY_TAKEN("Вибачте, але такий email або номер телефону вже зайнятий"),
+    PASSWORD_IS_TO_SHORT("Довжина поля не може бути менше 4 і більше 16 символів"),
+    NICKNAME_TAKEN("Вказаний нік вже зайнятий.");
 
     private final String errors;
 

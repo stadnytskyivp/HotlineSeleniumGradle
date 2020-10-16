@@ -1,6 +1,7 @@
 package com.hotline.tests.registrationpage;
 
 import com.hotline.helpers.EErrors;
+import com.hotline.helpers.ReusableMethods;
 import com.hotline.pageobject.pages.RegistrationFinalPage;
 import com.hotline.pageobject.pages.RegistrationPage;
 import com.hotline.tests.BaseTest;
@@ -14,7 +15,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +23,7 @@ import static com.hotline.helpers.EErrors.*;
 
 public class RegistrationNegativeTest extends BaseTest {
     @Description("Verify that we can't register user with invalid credentials")
-    @Parameters({"User register"})
+    @Parameters({"User register; List<EErrors> expectedErrors"})
     @Test(dataProvider = "invalidUsers")
     public void registerInvalidUser(User user, List<EErrors> expectedErrors) {
         Allure.step("Start test registration user with invalid credentials");
@@ -35,27 +35,12 @@ public class RegistrationNegativeTest extends BaseTest {
         registrationPage.getShowPasswordBtn().click();
         registrationPage.getRegisterBtn().click();
 
-        System.out.println(" **** ");
-
         List<WebElement> actualErrors = registrationPage.getAllErrors();
-        System.out.println(actualErrors.size());
 
         if (actualErrors.size() == expectedErrors.size()) {
-            int i = actualErrors.size();
-            System.out.println(actualErrors.get(i-1).getText());
-            System.out.println(expectedErrors.get(i-1).getError());
-            while (i != 0) {
-//                actualErrors.get(i);
-                Assert.assertEquals(actualErrors.get(i).getText(), expectedErrors.get(i).getError());
-                i--;
-            }
-        }
-
-        System.out.println(registrationPage.getErrorText());
-        System.out.println(" **** ");
-
-        Assert.assertTrue(registrationPage.isErrorVisible(),
-            "expecting to see registration page with red error message near input fields");
+            ReusableMethods.compareErrors(actualErrors.size(), actualErrors, expectedErrors);
+        } else Assert.assertFalse(registrationPage.isErrorVisible(),
+            "expecting to see registration page without red error message near input fields");
     }
 
     @Description("Verify that we can't register existing user")
@@ -80,31 +65,40 @@ public class RegistrationNegativeTest extends BaseTest {
         registrationPage.getShowPasswordBtn().click();
         registrationPage.getRegisterBtn().click();
 
-        if (registrationPage.isErrorVisible())
+        List<WebElement> actualErrors = registrationPage.getAllErrors();
 
-            Assert.assertTrue(registrationPage.isErrorVisible(),
-                "expecting to see registration page with red error message near input fields");
+        if (actualErrors.size() == 2) {
+            ReusableMethods.compareErrors(actualErrors.size(), actualErrors,
+                Arrays.asList(EMAIL_OR_PHONE_ALREADY_TAKEN, NICKNAME_TAKEN));
+        } else {
+            Assert.assertFalse(registrationPage.isErrorVisible(),
+                "expecting to see registration page without red error message near input fields");
+        }
     }
 
     @DataProvider
     public Object[][] invalidUsers() {
         return new Object[][]{
-            {UserInfo.newUser().setName("").setLogin("").setPassword(""),
-                Arrays.asList(EMPTY_FIELD, EMPTY_FIELD, EMPTY_FIELD)},
-//            {UserInfo.newUser().setName("")},
-//            {UserInfo.newUser().setName(UserInfo.newUser().getName() + "@abc")},
-//            {UserInfo.newUser().setName("!@#$%^&")},
-//            {UserInfo.newUser().setPassword("")},
-//            {UserInfo.newUser().setPassword("!@#$%^&")},    //expecting fail
-//            {UserInfo.newUser().setPassword("123")},
-//            {UserInfo.newUser().setPassword("123 ")},
-//            {UserInfo.newUser().setPassword("12 3")},   //expecting fail
-//            {UserInfo.newUser().setLogin("")},
-//            {UserInfo.newUser().setLogin("ÐŸÐµÑ‚Ñ€Ð¾" + ReusableMethods.getRandomNumber() + "@gmail.com")},
-//            {UserInfo.newUser().setLogin(ReusableMethods.getRandomUsername())},
-//            {UserInfo.newUser().setLogin(UserInfo.newUser().getName() + " @gmail.com")},
-//            {UserInfo.newUser().setLogin(UserInfo.newUser().getName() + " " + UserInfo.newUser().getName() + " @gmail.com")},
-//            {UserInfo.newUser().setLogin("!@#$%^&" + "@gmail.com")},
+            {UserInfo.newUser().setLogin("khg").setName("").setPassword("123"),
+                Arrays.asList(TYPE_EMAIL_OR_PHONE, EMPTY_FIELD, PASSWORD_IS_TO_SHORT)},
+            {UserInfo.newUser().setLogin("").setPassword("123"), Arrays.asList(EMPTY_FIELD, PASSWORD_IS_TO_SHORT)},
+            {UserInfo.newUser().setName(""), Collections.singletonList(EMPTY_FIELD)},
+            {UserInfo.newUser().setName(UserInfo.newUser().getName() + "@abc"), Collections.singletonList(WRONG_DATA_FORMAT)},
+            {UserInfo.newUser().setName("!@#$%^&"), Collections.singletonList(WRONG_DATA_FORMAT)},
+            {UserInfo.newUser().setPassword(""), Collections.singletonList(EMPTY_FIELD)},
+            {UserInfo.newUser().setPassword("!@#$%^&"), Collections.singletonList(WRONG_DATA_FORMAT)},    //expecting fail
+            {UserInfo.newUser().setPassword("123"), Collections.singletonList(PASSWORD_IS_TO_SHORT)},
+            {UserInfo.newUser().setPassword("123 "), Collections.singletonList(PASSWORD_IS_TO_SHORT)},
+            {UserInfo.newUser().setPassword("12 3"), Collections.singletonList(WRONG_DATA_FORMAT)},   //expecting fail
+            {UserInfo.newUser().setLogin(""), Collections.singletonList(EMPTY_FIELD)},
+            {UserInfo.newUser().setLogin("Ïåòðî" + ReusableMethods.getRandomNumber() + "@gmail.com"),
+                Collections.singletonList(WRONG_DATA_FORMAT)},
+            {UserInfo.newUser().setLogin(ReusableMethods.getRandomUsername()), Collections.singletonList(TYPE_EMAIL_OR_PHONE)},
+            {UserInfo.newUser().setLogin(UserInfo.newUser().getName() + " @gmail.com"),
+                Collections.singletonList(WRONG_DATA_FORMAT)},
+            {UserInfo.newUser().setLogin(UserInfo.newUser().getName() + " " + UserInfo.newUser().getName() + "@gmail.com"),
+                Collections.singletonList(TYPE_EMAIL_OR_PHONE)},    //expecting fail
+            {UserInfo.newUser().setLogin("!@#$%^&" + "@gmail.com"), Collections.singletonList(WRONG_DATA_FORMAT)},
         };
     }
 }

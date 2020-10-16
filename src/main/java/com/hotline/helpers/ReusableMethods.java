@@ -1,5 +1,9 @@
 package com.hotline.helpers;
 
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+import java.util.List;
 import java.util.Random;
 
 public class ReusableMethods {
@@ -20,5 +24,13 @@ public class ReusableMethods {
             numberStr = numberStr + "0";
         }
         return ("+38093" + numberStr);
+    }
+
+    public static void compareErrors(int errorCount, List<WebElement> actualErrors, List<EErrors> expectedErrors) {
+        int i = errorCount;
+        while (i != 0) {
+            Assert.assertEquals(expectedErrors.get(i - 1).getError(), actualErrors.get(i - 1).getText());
+            i--;
+        }
     }
 }
