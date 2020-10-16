@@ -13,12 +13,12 @@ public abstract class AuthorizationPage {
 
     protected AuthorizationPage (WebDriver driver) {
         this.driver = driver;
-        headerLogoLink = driver.findElement(By.cssSelector(".header-short"));
         loginField = driver.findElement(By.name("login"));
         passwordField = driver.findElement(By.name("password"));
     }
 
     public WebElement getHeaderLogoLink() {
+        headerLogoLink = driver.findElement(By.cssSelector(".header-short"));
         return headerLogoLink;
     }
 

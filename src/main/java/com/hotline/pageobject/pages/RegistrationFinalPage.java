@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class RegistrationFinalPage {
     private WebDriver driver;
+
     private WebElement headerLogoLink;
     private WebElement codeField;
 

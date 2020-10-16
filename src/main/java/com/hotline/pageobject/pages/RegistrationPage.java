@@ -1,9 +1,10 @@
 package com.hotline.pageobject.pages;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class RegistrationPage extends AuthorizationPage {
     private WebElement nameField;
@@ -35,18 +36,18 @@ public class RegistrationPage extends AuthorizationPage {
     }
 
     public WebElement getErrorMsg() {
-        errorMsg = driver.findElement(By.cssSelector(".errors"));
-        return errorMsg;
+        return driver.findElement(By.cssSelector(".errors"));
     }
 
     public boolean isErrorVisible() {
         return getErrorMsg().isDisplayed();
     }
 
-    public RegistrationPage closeAlert() {
-        Alert alert = driver.switchTo().alert();
-        alert.dismiss();
-//        driver.switchTo().confirmationAlertalert().dismiss();
-        return this;
+    public String getErrorText() {
+        return getErrorMsg().getText();
+    }
+
+    public List<WebElement> getAllErrors() {
+        return driver.findElements(By.cssSelector(".errors"));
     }
 }

@@ -1,6 +1,5 @@
 package com.hotline.tests;
 
-import com.hotline.helpers.HotlineConstants;
 import com.hotline.pageobject.pages.HomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Step;
@@ -14,6 +13,7 @@ import org.testng.annotations.BeforeSuite;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class BaseTest {
+    public static final String BASE_URL = "https://hotline.ua/";
     private WebDriver driver;
 
     protected WebDriver getDriver() {
@@ -40,7 +40,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        getDriver().get(HotlineConstants.BASE_URL);
+        getDriver().get(BASE_URL);
     }
 
     @AfterClass(alwaysRun = true)
