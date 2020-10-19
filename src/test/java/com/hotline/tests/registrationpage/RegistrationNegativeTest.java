@@ -10,7 +10,6 @@ import com.hotline.user.UserInfo;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -36,11 +35,7 @@ public class RegistrationNegativeTest extends BaseTest {
         registrationPage.getRegisterBtn().click();
 
         List<WebElement> actualErrors = registrationPage.getAllErrors();
-
-        if (actualErrors.size() == expectedErrors.size()) {
-            ReusableMethods.compareErrors(actualErrors.size(), actualErrors, expectedErrors);
-        } else Assert.assertFalse(registrationPage.isErrorVisible(),
-            "expecting to see registration page without red error message near input fields");
+        ReusableMethods.compareErrors(actualErrors, expectedErrors);
     }
 
     @Description("Verify that we can't register existing user")
@@ -66,39 +61,50 @@ public class RegistrationNegativeTest extends BaseTest {
         registrationPage.getRegisterBtn().click();
 
         List<WebElement> actualErrors = registrationPage.getAllErrors();
-
-        if (actualErrors.size() == 2) {
-            ReusableMethods.compareErrors(actualErrors.size(), actualErrors,
-                Arrays.asList(EMAIL_OR_PHONE_ALREADY_TAKEN, NICKNAME_TAKEN));
-        } else {
-            Assert.assertFalse(registrationPage.isErrorVisible(),
-                "expecting to see registration page without red error message near input fields");
-        }
+        ReusableMethods.compareErrors(actualErrors, Arrays.asList(EMAIL_OR_PHONE_ALREADY_TAKEN, NICKNAME_TAKEN));
     }
 
     @DataProvider
     public Object[][] invalidUsers() {
         return new Object[][]{
+            //setting user with 3 invalid parameters at the same time
             {UserInfo.newUser().setLogin("khg").setName("").setPassword("123"),
                 Arrays.asList(TYPE_EMAIL_OR_PHONE, EMPTY_FIELD, PASSWORD_IS_TO_SHORT)},
+            //setting user with 2 invalid parameters at the same time
             {UserInfo.newUser().setLogin("").setPassword("123"), Arrays.asList(EMPTY_FIELD, PASSWORD_IS_TO_SHORT)},
+            //setting user with empty name field
             {UserInfo.newUser().setName(""), Collections.singletonList(EMPTY_FIELD)},
-            {UserInfo.newUser().setName(UserInfo.newUser().getName() + "@abc"), Collections.singletonList(WRONG_DATA_FORMAT)},
+            //setting user with symbols in name field
             {UserInfo.newUser().setName("!@#$%^&"), Collections.singletonList(WRONG_DATA_FORMAT)},
+            //setting user with empty password field
             {UserInfo.newUser().setPassword(""), Collections.singletonList(EMPTY_FIELD)},
-            {UserInfo.newUser().setPassword("!@#$%^&"), Collections.singletonList(WRONG_DATA_FORMAT)},    //expecting fail
+            //setting user with symbols in password field
+            {UserInfo.newUser().setPassword("!@#$%^&"), Collections.singletonList(WRONG_DATA_FORMAT)},    //expecting test fail
+            //setting user with less than 4 symbols in password field
             {UserInfo.newUser().setPassword("123"), Collections.singletonList(PASSWORD_IS_TO_SHORT)},
+            //setting user with 4 symbols were 4th symbol is empty space in password field
             {UserInfo.newUser().setPassword("123 "), Collections.singletonList(PASSWORD_IS_TO_SHORT)},
-            {UserInfo.newUser().setPassword("12 3"), Collections.singletonList(WRONG_DATA_FORMAT)},   //expecting fail
+            //setting user with 4 symbols were one of symbols in the middle is empty space in password field
+            {UserInfo.newUser().setPassword("12 3"), Collections.singletonList(WRONG_DATA_FORMAT)},   //expecting test fail
+            //setting user with empty login field
             {UserInfo.newUser().setLogin(""), Collections.singletonList(EMPTY_FIELD)},
+            //setting user with cyrillic symbols in login field
             {UserInfo.newUser().setLogin("Петро" + ReusableMethods.getRandomNumber() + "@gmail.com"),
                 Collections.singletonList(WRONG_DATA_FORMAT)},
+            //setting user with some random name symbols in login field (not email or phone#)
             {UserInfo.newUser().setLogin(ReusableMethods.getRandomUsername()), Collections.singletonList(TYPE_EMAIL_OR_PHONE)},
+            //setting user with random email with empty space before '@' symbol in login field
             {UserInfo.newUser().setLogin(UserInfo.newUser().getName() + " @gmail.com"),
                 Collections.singletonList(WRONG_DATA_FORMAT)},
+            //setting user with random email with empty space in the middle of email prefix in login field
             {UserInfo.newUser().setLogin(UserInfo.newUser().getName() + " " + UserInfo.newUser().getName() + "@gmail.com"),
-                Collections.singletonList(TYPE_EMAIL_OR_PHONE)},    //expecting fail
+                Collections.singletonList(TYPE_EMAIL_OR_PHONE)},    //expecting test fail
+            //setting user with random email with special symbols in prefix of email in login field
             {UserInfo.newUser().setLogin("!@#$%^&" + "@gmail.com"), Collections.singletonList(WRONG_DATA_FORMAT)},
+            //setting user with to short phone number in login field
+            {UserInfo.newUser().setLogin(ReusableMethods.getRandomPhoneNumber().substring(0, 9)), Collections.singletonList(WRONG_DATA_FORMAT)},
+            //setting user with to long phone number in login field
+            {UserInfo.newUser().setLogin(ReusableMethods.getRandomPhoneNumber() + "0"), Collections.singletonList(WRONG_DATA_FORMAT)},
         };
     }
 }

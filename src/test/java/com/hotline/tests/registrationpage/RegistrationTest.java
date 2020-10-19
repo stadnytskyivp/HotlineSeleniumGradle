@@ -45,17 +45,26 @@ public class RegistrationTest extends BaseTest {
     @DataProvider
     public Object[][] validUsers() {
         return new Object[][]{
+            //setting user with expected random data
             {UserInfo.newUser()},
+            //setting user with cyrillic name and random number
             {UserInfo.newUser().setName("Петро" + ReusableMethods.getRandomNumber())},
+            //setting user with name made of random numbers only
             {UserInfo.newUser().setName(ReusableMethods.getRandomNumber())},
+            //setting user with random name and number with symbols between
             {UserInfo.newUser().setName(ReusableMethods.getRandomUsername() + "_-" + ReusableMethods.getRandomNumber())},
+            //setting user with random name and number with empty space between
             {UserInfo.newUser().setName(ReusableMethods.getRandomUsername() + " " + ReusableMethods.getRandomNumber())},
-            {UserInfo.newUser().setName("123456789012345678901234567890_over_30_symbols")},
+            //setting user with random name with over 30 symbols
+            {UserInfo.newUser().setName(ReusableMethods.getRandomUsername() + "123456789012345678901234567890")},
+            //setting user with password with over 16 symbols
             {UserInfo.newUser().setPassword("1234567890123456_over_16_sybols")},
+            //setting user with cyrillic word in password and random name
             {UserInfo.newUser().setPassword("Петро" + ReusableMethods.getRandomUsername())},
+            //setting user with random phone number in login field
             {UserInfo.newUser().setLogin(ReusableMethods.getRandomPhoneNumber())},
+            //setting user with empty space and email login in login field
             {UserInfo.newUser().setLogin(" " + UserInfo.newUser().getName() + "@gmail.com")},
-            {UserInfo.newUser()},
         };
     }
 }

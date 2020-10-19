@@ -26,7 +26,8 @@ public class ReusableMethods {
         return ("+38093" + numberStr);
     }
 
-    public static void compareErrors(int i, List<WebElement> actualErrors, List<EErrors> expectedErrors) {
+    public static void compareErrors(List<WebElement> actualErrors, List<EErrors> expectedErrors) {
+        int i = actualErrors.size();
         while (i != 0) {
             Assert.assertEquals(expectedErrors.get(i - 1).getError(), actualErrors.get(i - 1).getText());
             i--;
