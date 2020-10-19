@@ -15,10 +15,11 @@ public abstract class AuthorizationPage {
         this.driver = driver;
         loginField = driver.findElement(By.name("login"));
         passwordField = driver.findElement(By.name("password"));
+        headerLogoLink = driver.findElement(By.cssSelector(".header-short"));
     }
 
     public WebElement getHeaderLogoLink() {
-        headerLogoLink = driver.findElement(By.cssSelector(".header-short"));
+//        headerLogoLink = driver.findElement(By.cssSelector(".header-short"));
         return headerLogoLink;
     }
 

@@ -46,13 +46,13 @@ public class RegistrationTest extends BaseTest {
     public Object[][] validUsers() {
         return new Object[][]{
             {UserInfo.newUser()},
-            {UserInfo.newUser().setName("Петро" + ReusableMethods.getRandomNumber())},
+            {UserInfo.newUser().setName("РџРµС‚СЂРѕ" + ReusableMethods.getRandomNumber())},
             {UserInfo.newUser().setName(ReusableMethods.getRandomNumber())},
             {UserInfo.newUser().setName(ReusableMethods.getRandomUsername() + "_-" + ReusableMethods.getRandomNumber())},
             {UserInfo.newUser().setName(ReusableMethods.getRandomUsername() + " " + ReusableMethods.getRandomNumber())},
             {UserInfo.newUser().setName("123456789012345678901234567890_over_30_symbols")},
             {UserInfo.newUser().setPassword("1234567890123456_over_16_sybols")},
-            {UserInfo.newUser().setPassword("Петро" + ReusableMethods.getRandomUsername())},
+            {UserInfo.newUser().setPassword("РџРµС‚СЂРѕ" + ReusableMethods.getRandomUsername())},
             {UserInfo.newUser().setLogin(ReusableMethods.getRandomPhoneNumber())},
             {UserInfo.newUser().setLogin(" " + UserInfo.newUser().getName() + "@gmail.com")},
             {UserInfo.newUser()},

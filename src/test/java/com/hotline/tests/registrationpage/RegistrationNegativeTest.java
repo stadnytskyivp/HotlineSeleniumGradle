@@ -91,7 +91,7 @@ public class RegistrationNegativeTest extends BaseTest {
             {UserInfo.newUser().setPassword("123 "), Collections.singletonList(PASSWORD_IS_TO_SHORT)},
             {UserInfo.newUser().setPassword("12 3"), Collections.singletonList(WRONG_DATA_FORMAT)},   //expecting fail
             {UserInfo.newUser().setLogin(""), Collections.singletonList(EMPTY_FIELD)},
-            {UserInfo.newUser().setLogin("Ïåòðî" + ReusableMethods.getRandomNumber() + "@gmail.com"),
+            {UserInfo.newUser().setLogin("ÐŸÐµÑ‚Ñ€Ð¾" + ReusableMethods.getRandomNumber() + "@gmail.com"),
                 Collections.singletonList(WRONG_DATA_FORMAT)},
             {UserInfo.newUser().setLogin(ReusableMethods.getRandomUsername()), Collections.singletonList(TYPE_EMAIL_OR_PHONE)},
             {UserInfo.newUser().setLogin(UserInfo.newUser().getName() + " @gmail.com"),
