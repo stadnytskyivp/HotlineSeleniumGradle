@@ -49,11 +49,9 @@ public class RegistrationTest extends BaseTest {
         User user = UserInfo.newUser();
         RegistrationPage registrationPage = openBrowser().gotoLoginPage().gotoRegistrationPage();
         registrationPage.getPasswordField().sendKeys(user.getPassword());
-        Assert.assertNotEquals(registrationPage.getPasswordField().getText(), user.getPassword());
-        registrationPage.getShowPasswordBtn().click();
         Assert.assertEquals(registrationPage.getPasswordField().getAttribute("value"), user.getPassword());
         registrationPage.getShowPasswordBtn().click();
-        Assert.assertNotEquals(registrationPage.getPasswordField().getText(), user.getPassword());
+        Assert.assertEquals(registrationPage.getPasswordField().getAttribute("value"), user.getPassword());
     }
 
     @DataProvider

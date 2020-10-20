@@ -8,8 +8,6 @@ import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
 public class LoginPageTest extends BaseTest {
     @Description("Verify that we see all elements of login page")
     @Test
@@ -28,7 +26,7 @@ public class LoginPageTest extends BaseTest {
 
     @Description("Verify that user can login with valid credentials")
     @Test
-    public void loginValidUser() throws IOException {
+    public void loginValidUser() {
         Allure.step("Start test login user with valid credentials");
         LoginPage loginPage = openBrowser().gotoLoginPage();
 

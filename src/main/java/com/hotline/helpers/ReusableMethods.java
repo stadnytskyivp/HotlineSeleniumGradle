@@ -27,10 +27,8 @@ public class ReusableMethods {
     }
 
     public static void compareErrors(List<WebElement> actualErrors, List<EErrors> expectedErrors) {
-        int i = actualErrors.size();
-        while (i != 0) {
-            Assert.assertEquals(expectedErrors.get(i - 1).getError(), actualErrors.get(i - 1).getText());
-            i--;
+        for (WebElement actualError : actualErrors) {
+            Assert.assertEquals(actualError.getText(), expectedErrors.get(actualErrors.indexOf(actualError)).getError());
         }
     }
 }

@@ -3,8 +3,6 @@ package com.hotline.user;
 import com.hotline.helpers.ReusableMethods;
 import com.hotline.tools.XmlDataLoader;
 
-import java.io.IOException;
-
 public class UserInfo {
     private static final String USER_EMAIL = "userEmail";
     private static final String USER_PASSWORD = "userPassword";
@@ -16,7 +14,7 @@ public class UserInfo {
             .setName(ReusableMethods.getRandomUsername());
     }
 
-    public static User myUser() throws IOException {
+    public static User myUser() {
         return new User()
             .setLogin(XmlDataLoader.getProperty(USER_EMAIL))
             .setPassword(XmlDataLoader.getProperty(USER_PASSWORD))

@@ -10,7 +10,6 @@ import com.hotline.user.UserInfo;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -68,18 +67,12 @@ public class RegistrationNegativeTest extends BaseTest {
             //setting user with 3 invalid parameters at the same time
             {UserInfo.newUser().setLogin("khg").setName("").setPassword("123"),
                 Arrays.asList(TYPE_EMAIL_OR_PHONE, EMPTY_FIELD, PASSWORD_IS_TO_SHORT)},
-            //setting user with 2 invalid parameters at the same time
-            {UserInfo.newUser().setLogin("").setPassword("123"), Arrays.asList(EMPTY_FIELD, PASSWORD_IS_TO_SHORT)},
-            //setting user with empty name field
-            {UserInfo.newUser().setName(""), Collections.singletonList(EMPTY_FIELD)},
             //setting user with symbols in name field
             {UserInfo.newUser().setName("!@#$%^&"), Collections.singletonList(WRONG_DATA_FORMAT)},
             //setting user with empty password field
             {UserInfo.newUser().setPassword(""), Collections.singletonList(EMPTY_FIELD)},
             //setting user with symbols in password field
             {UserInfo.newUser().setPassword("!@#$%^&"), Collections.singletonList(WRONG_DATA_FORMAT)},    //expecting test fail
-            //setting user with less than 4 symbols in password field
-            {UserInfo.newUser().setPassword("123"), Collections.singletonList(PASSWORD_IS_TO_SHORT)},
             //setting user with 4 symbols were 4th symbol is empty space in password field
             {UserInfo.newUser().setPassword("123 "), Collections.singletonList(PASSWORD_IS_TO_SHORT)},
             //setting user with 4 symbols were one of symbols in the middle is empty space in password field
