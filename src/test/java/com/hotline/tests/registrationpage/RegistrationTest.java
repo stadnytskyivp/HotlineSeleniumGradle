@@ -42,6 +42,20 @@ public class RegistrationTest extends BaseTest {
             "expecting to see final registration page with enabled code confirmation field");
     }
 
+    @Description("Verify that show password button works on registration page")
+    @Test
+    public void checkShowPasswordBtnTest() {
+        Allure.step("Start test checking show password button on registration page");
+        User user = UserInfo.newUser();
+        RegistrationPage registrationPage = openBrowser().gotoLoginPage().gotoRegistrationPage();
+        registrationPage.getPasswordField().sendKeys(user.getPassword());
+        Assert.assertNotEquals(registrationPage.getPasswordField().getText(), user.getPassword());
+        registrationPage.getShowPasswordBtn().click();
+        Assert.assertEquals(registrationPage.getPasswordField().getText(), user.getPassword());
+        registrationPage.getShowPasswordBtn().click();
+        Assert.assertNotEquals(registrationPage.getPasswordField().getText(), user.getPassword());
+    }
+
     @DataProvider
     public Object[][] validUsers() {
         return new Object[][]{

@@ -19,7 +19,6 @@ public abstract class AuthorizationPage {
     }
 
     public WebElement getHeaderLogoLink() {
-//        headerLogoLink = driver.findElement(By.cssSelector(".header-short"));
         return headerLogoLink;
     }
 

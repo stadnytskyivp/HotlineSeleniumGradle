@@ -10,6 +10,7 @@ import com.hotline.user.UserInfo;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -31,7 +32,6 @@ public class RegistrationNegativeTest extends BaseTest {
         registrationPage.getLoginField().sendKeys(user.getLogin());
         registrationPage.getNameField().sendKeys(user.getName());
         registrationPage.getPasswordField().sendKeys(user.getPassword());
-        registrationPage.getShowPasswordBtn().click();
         registrationPage.getRegisterBtn().click();
 
         List<WebElement> actualErrors = registrationPage.getAllErrors();
@@ -48,7 +48,6 @@ public class RegistrationNegativeTest extends BaseTest {
         registrationPage.getLoginField().sendKeys(user.getLogin());
         registrationPage.getNameField().sendKeys(user.getName());
         registrationPage.getPasswordField().sendKeys(user.getPassword());
-        registrationPage.getShowPasswordBtn().click();
         registrationPage.getRegisterBtn().click();
 
         RegistrationFinalPage registrationFinalPage = registrationPage.gotoRegistrationFinalPage();
@@ -57,7 +56,6 @@ public class RegistrationNegativeTest extends BaseTest {
         registrationPage.getLoginField().sendKeys(user.getLogin().toUpperCase());
         registrationPage.getNameField().sendKeys(user.getName());
         registrationPage.getPasswordField().sendKeys(user.getPassword());
-        registrationPage.getShowPasswordBtn().click();
         registrationPage.getRegisterBtn().click();
 
         List<WebElement> actualErrors = registrationPage.getAllErrors();
