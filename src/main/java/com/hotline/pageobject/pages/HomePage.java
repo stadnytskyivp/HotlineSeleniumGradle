@@ -1,6 +1,6 @@
-package com.hotline.pages;
+package com.hotline.pageobject.pages;
 
-import com.hotline.modules.HeaderModule;
+import com.hotline.pageobject.modules.HeaderModule;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage extends HeaderModule {

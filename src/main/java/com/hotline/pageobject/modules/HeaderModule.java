@@ -1,6 +1,8 @@
-package com.hotline.modules;
+package com.hotline.pageobject.modules;
 
-import com.hotline.pages.HomePage;
+import com.hotline.pageobject.pages.HomePage;
+import com.hotline.pageobject.pages.LoginPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,10 +23,6 @@ public abstract class HeaderModule {
 
     public HeaderModule(WebDriver driver) {
        this.driver = driver;
-       initElements();
-    }
-
-    private void initElements() {
         logoLink = driver.findElement(By.cssSelector(".header-logo"));
         cityNameLink = driver.findElement(By.cssSelector(".city-name"));
         chooseLanguage = driver.findElement(By.xpath("//*[@data-language='uk'][1]"));
@@ -34,7 +32,7 @@ public abstract class HeaderModule {
         itemCartLink = driver.findElement(By.cssSelector(".item-cart"));
         searchTopButton = driver.findElement(By.id("doSearch"));
         searchTopField = driver.findElement(By.id("searchbox"));
-        productCatalog = driver.findElement(By.xpath(".uppercase"));
+        productCatalog = driver.findElement(By.cssSelector(".uppercase"));
     }
 
     public WebElement getLogoLink() {
@@ -65,6 +63,7 @@ public abstract class HeaderModule {
         getLogoLink().click();
     }
 
+    @Step("Going to the home page")
     public HomePage gotoHomePage() {
         clickLogo();
         return new HomePage(driver);
@@ -84,5 +83,15 @@ public abstract class HeaderModule {
 
     public WebElement getProductCatalog() {
         return productCatalog;
+    }
+
+    public void clickLogin() {
+        getLoginUserLink().click();
+    }
+
+    @Step("Going to the login page")
+    public LoginPage gotoLoginPage() {
+        clickLogin();
+        return new LoginPage(driver);
     }
 }

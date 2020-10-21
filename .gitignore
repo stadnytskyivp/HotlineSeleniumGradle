@@ -116,3 +116,4 @@ hs_err_pid*
 /node_modules/
 /**/node_modules/
 config.properties
+config.xml
