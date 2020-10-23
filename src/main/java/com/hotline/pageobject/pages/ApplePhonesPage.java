@@ -8,26 +8,32 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class ApplePhonesPage extends HeaderModule {
-    private WebElement categoryHeader;
-    private List<WebElement> iphoneList;
     private List<WebElement> phoneNameList;
+    private WebElement mainSort;
+    private WebElement mainSortBox;
+    private List<WebElement> phonePriceList;
 
-    ApplePhonesPage (WebDriver driver){
+    ApplePhonesPage(WebDriver driver) {
         super(driver);
-        categoryHeader = driver.findElement(By.xpath("//*[@class='heading']/h1"));
-        iphoneList = driver.findElements(By.cssSelector(".product-item"));
         phoneNameList = driver.findElements(By.xpath("//*[@class='item-info']/p/a"));
-    }
-
-    public WebElement getCategoryHeader() {
-        return categoryHeader;
-    }
-
-    public List<WebElement> getIphoneList() {
-        return iphoneList;
+        mainSort = driver.findElement(By.cssSelector("[name=sort]"));
     }
 
     public List<WebElement> getPhoneNameList() {
         return phoneNameList;
+    }
+
+    public WebElement getMainSort() {
+        return mainSort;
+    }
+
+    public WebElement getMainSortBoxItem(int number) {
+        mainSortBox = driver.findElement(By.cssSelector(String.format(("[name='sort'] [data-value='%s']"), number)));
+        return mainSortBox;
+    }
+
+    public List<WebElement> getPhonePriceList() {
+        phonePriceList = driver.findElements(By.cssSelector(".item-price span.value"));
+        return phonePriceList;
     }
 }
