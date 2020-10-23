@@ -11,9 +11,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+
+import java.util.List;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -72,5 +75,11 @@ public class BaseTest {
                             "return false;                            "
                     , element);
         });
+    }
+
+    protected void whetherElementsContain(List<WebElement> elements, String expectedData) {
+                for (WebElement i : elements) {
+            Assert.assertTrue(i.getText().contains(expectedData));
+        }
     }
 }
