@@ -15,6 +15,7 @@ public class MobilesPage extends HeaderModule {
     private WebElement categoryChargers;
     private WebElement categoryAccessories;
     private WebElement categoryComponentsForPhones;
+    private WebElement applePhonesLink;
 
     MobilesPage(WebDriver driver) {
         super(driver);
@@ -30,6 +31,7 @@ public class MobilesPage extends HeaderModule {
                 By.xpath("//h2[@data-scroll-smooth-to-element-to='dopolnitelnoe-oborudovanie-i-aksessuary']"));
         categoryComponentsForPhones = driver.findElement(
                 By.xpath("//h2[@data-scroll-smooth-to-element-to='komplektuyuschie-dlya-telefonov-i-smartfonov']"));
+        applePhonesLink = driver.findElement(By.cssSelector("[href='/mobile/mobilnye-telefony-i-smartfony/294245/']"));
     }
 
     public WebElement getHeaderTitle() {
@@ -58,5 +60,14 @@ public class MobilesPage extends HeaderModule {
 
     public WebElement getCategoryAccessories() {
         return categoryAccessories;
+    }
+
+    public WebElement getApplePhonesLink() {
+        return applePhonesLink;
+    }
+
+    public ApplePhonesPage gotoApplePhonesPage() {
+        getApplePhonesLink().click();
+        return new ApplePhonesPage(driver);
     }
 }
