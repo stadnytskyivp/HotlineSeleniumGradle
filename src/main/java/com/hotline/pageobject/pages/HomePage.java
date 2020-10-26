@@ -10,10 +10,10 @@ public class HomePage extends HeaderModule {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        mobileCatalog = driver.findElement(By.cssSelector(".icon-menu-mobile"));
     }
 
     public WebElement getMobileCatalog() {
+        mobileCatalog = driver.findElement(By.cssSelector(".icon-menu-mobile"));
         return mobileCatalog;
     }
 

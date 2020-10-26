@@ -15,15 +15,15 @@ public class ApplePhonesPage extends HeaderModule {
 
     ApplePhonesPage(WebDriver driver) {
         super(driver);
-        phoneNameList = driver.findElements(By.xpath("//*[@class='item-info']/p/a"));
-        mainSort = driver.findElement(By.cssSelector("[name=sort]"));
     }
 
     public List<WebElement> getPhoneNameList() {
+        phoneNameList = driver.findElements(By.xpath("//*[@class='item-info']/p/a"));
         return phoneNameList;
     }
 
     public WebElement getMainSort() {
+        mainSort = driver.findElement(By.cssSelector("[name=sort]"));
         return mainSort;
     }
 

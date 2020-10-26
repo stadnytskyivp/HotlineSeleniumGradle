@@ -12,20 +12,20 @@ public class LoginPage extends AuthorizationPage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        submitBtn = driver.findElement(By.xpath("//*[@data-id='verification']"));
-        forgotPasswordLink = driver.findElement(By.xpath("//*[@href='/reminder/']"));
-        registerLink = driver.findElement(By.xpath("//*[@href='/register/']"));
     }
 
     public WebElement getSubmitBtn() {
+        submitBtn = driver.findElement(By.xpath("//*[@data-id='verification']"));
         return submitBtn;
     }
 
     public WebElement getForgotPasswordLink() {
+        forgotPasswordLink = driver.findElement(By.xpath("//*[@href='/reminder/']"));
         return forgotPasswordLink;
     }
 
     public WebElement getRegisterLink() {
+        registerLink = driver.findElement(By.xpath("//*[@href='/register/']"));
         return registerLink;
     }
 

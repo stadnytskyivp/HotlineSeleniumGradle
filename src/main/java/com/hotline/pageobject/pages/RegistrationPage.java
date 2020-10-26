@@ -12,22 +12,22 @@ public class RegistrationPage extends AuthorizationPage {
     private WebElement showPasswordBtn;
     private WebElement errorMsg;
 
-    public RegistrationPage (WebDriver driver) {
+    public RegistrationPage(WebDriver driver) {
         super(driver);
-        nameField = driver.findElement(By.name("name"));
-        registerBtn = driver.findElement(By.id("submit-button"));
-        showPasswordBtn = driver.findElement(By.cssSelector(".check-view"));
     }
 
     public WebElement getNameField() {
+        nameField = driver.findElement(By.name("name"));
         return nameField;
     }
 
     public WebElement getRegisterBtn() {
+        registerBtn = driver.findElement(By.id("submit-button"));
         return registerBtn;
     }
 
     public WebElement getShowPasswordBtn() {
+        showPasswordBtn = driver.findElement(By.cssSelector(".check-view"));
         return showPasswordBtn;
     }
 

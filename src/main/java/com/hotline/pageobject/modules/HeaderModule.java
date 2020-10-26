@@ -22,40 +22,36 @@ public abstract class HeaderModule {
     private WebElement productCatalog;
 
     public HeaderModule(WebDriver driver) {
-       this.driver = driver;
-        logoLink = driver.findElement(By.cssSelector(".header-logo"));
-        cityNameLink = driver.findElement(By.cssSelector(".city-name"));
-        chooseLanguage = driver.findElement(By.xpath("//*[@data-language='uk'][1]"));
-        loginUserLink = driver.findElement(By.cssSelector(".item-login"));
-        compareItemsLink = driver.findElement(By.cssSelector(".item-compare"));
-        wishListLink = driver.findElement(By.cssSelector(".item-wishlist"));
-        itemCartLink = driver.findElement(By.cssSelector(".item-cart"));
-        searchTopButton = driver.findElement(By.id("doSearch"));
-        searchTopField = driver.findElement(By.id("searchbox"));
-        productCatalog = driver.findElement(By.cssSelector(".uppercase"));
+        this.driver = driver;
     }
 
     public WebElement getLogoLink() {
+        logoLink = driver.findElement(By.cssSelector(".header-logo"));
         return logoLink;
     }
 
     public WebElement getCityNameLink() {
+        cityNameLink = driver.findElement(By.cssSelector(".city-name"));
         return cityNameLink;
     }
 
     public WebElement getLoginUserLink() {
+        loginUserLink = driver.findElement(By.cssSelector(".item-login"));
         return loginUserLink;
     }
 
     public WebElement getCompareItemsLink() {
+        compareItemsLink = driver.findElement(By.cssSelector(".item-compare"));
         return compareItemsLink;
     }
 
     public WebElement getWishListLink() {
+        wishListLink = driver.findElement(By.cssSelector(".item-wishlist"));
         return wishListLink;
     }
 
     public WebElement getItemCartLink() {
+        itemCartLink = driver.findElement(By.cssSelector(".item-cart"));
         return itemCartLink;
     }
 
@@ -70,18 +66,22 @@ public abstract class HeaderModule {
     }
 
     public WebElement getChooseLanguage() {
+        chooseLanguage = driver.findElement(By.xpath("//*[@data-language='uk'][1]"));
         return chooseLanguage;
     }
 
     public WebElement getSearchTopButton() {
+        searchTopButton = driver.findElement(By.id("doSearch"));
         return searchTopButton;
     }
 
     public WebElement getSearchTopField() {
+        searchTopField = driver.findElement(By.id("searchbox"));
         return searchTopField;
     }
 
     public WebElement getProductCatalog() {
+        productCatalog = driver.findElement(By.cssSelector(".uppercase"));
         return productCatalog;
     }
 

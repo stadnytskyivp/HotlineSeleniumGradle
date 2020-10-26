@@ -78,7 +78,7 @@ public abstract class BaseTest {
         });
     }
 
-    protected void whetherElementsContain(List<WebElement> elements, String expectedData) {
+    protected void checkElementsContent(List<WebElement> elements, String expectedData) {
                 for (WebElement i : elements) {
             Assert.assertTrue(i.getText().contains(expectedData));
         }

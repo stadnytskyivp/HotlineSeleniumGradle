@@ -21,7 +21,7 @@ public class ApplePhonesPageTest extends BaseTest {
                 .gotoMobilePage()
                 .gotoApplePhonesPage();
 
-        whetherElementsContain(applePhonesPage.getPhoneNameList(), IPHONES);
+        checkElementsContent(applePhonesPage.getPhoneNameList(), IPHONES);
     }
 
     @Description("Verify that all devices are sorted by the rising price")

@@ -19,50 +19,50 @@ public class MobilesPage extends HeaderModule {
 
     MobilesPage(WebDriver driver) {
         super(driver);
-        headerTitle = driver.findElement(By.xpath("//h1/i[@class='icon-menu icon-menu-mobile']"));
-        categories = driver.findElements(By.cssSelector(".category-navigation-item"));
-        categorySmartphones = driver.findElement(
-                By.xpath("//h2[@data-scroll-smooth-to-element-to='telefony-i-garnitury']"));
-        categoryWatchesBands = driver.findElement(
-                By.xpath("//h2[@data-scroll-smooth-to-element-to='smart-chasy-i-fitnes-braslety']"));
-        categoryChargers = driver.findElement(
-                By.xpath("//h2[@data-scroll-smooth-to-element-to='zaryadka-i-sinhronizaciya']"));
-        categoryAccessories = driver.findElement(
-                By.xpath("//h2[@data-scroll-smooth-to-element-to='dopolnitelnoe-oborudovanie-i-aksessuary']"));
-        categoryComponentsForPhones = driver.findElement(
-                By.xpath("//h2[@data-scroll-smooth-to-element-to='komplektuyuschie-dlya-telefonov-i-smartfonov']"));
-        applePhonesLink = driver.findElement(By.cssSelector("[href='/mobile/mobilnye-telefony-i-smartfony/294245/']"));
     }
 
     public WebElement getHeaderTitle() {
+        headerTitle = driver.findElement(By.xpath("//h1/i[@class='icon-menu icon-menu-mobile']"));
         return headerTitle;
     }
 
     public List<WebElement> getCategories() {
+        categories = driver.findElements(By.cssSelector(".category-navigation-item"));
         return categories;
     }
 
     public WebElement getCategoryComponentsForPhones() {
+        categoryComponentsForPhones = driver.findElement(
+            By.xpath("//h2[@data-scroll-smooth-to-element-to='komplektuyuschie-dlya-telefonov-i-smartfonov']"));
         return categoryComponentsForPhones;
     }
 
     public WebElement getCategorySmartphones() {
+        categorySmartphones = driver.findElement(
+            By.xpath("//h2[@data-scroll-smooth-to-element-to='telefony-i-garnitury']"));
         return categorySmartphones;
     }
 
     public WebElement getCategoryWatchesBands() {
+        categoryWatchesBands = driver.findElement(
+            By.xpath("//h2[@data-scroll-smooth-to-element-to='smart-chasy-i-fitnes-braslety']"));
         return categoryWatchesBands;
     }
 
     public WebElement getCategoryChargers() {
+        categoryChargers = driver.findElement(
+            By.xpath("//h2[@data-scroll-smooth-to-element-to='zaryadka-i-sinhronizaciya']"));
         return categoryChargers;
     }
 
     public WebElement getCategoryAccessories() {
+        categoryAccessories = driver.findElement(
+            By.xpath("//h2[@data-scroll-smooth-to-element-to='dopolnitelnoe-oborudovanie-i-aksessuary']"));
         return categoryAccessories;
     }
 
     public WebElement getApplePhonesLink() {
+        applePhonesLink = driver.findElement(By.cssSelector("[href='/mobile/mobilnye-telefony-i-smartfony/294245/']"));
         return applePhonesLink;
     }
 
