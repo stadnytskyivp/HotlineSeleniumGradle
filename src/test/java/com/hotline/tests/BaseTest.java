@@ -16,11 +16,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
+import java.util.Comparator;
 import java.util.List;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-public class BaseTest {
+public abstract class BaseTest {
     public static final String BASE_URL = "https://hotline.ua/";
     private WebDriver driver;
 
@@ -81,5 +82,11 @@ public class BaseTest {
                 for (WebElement i : elements) {
             Assert.assertTrue(i.getText().contains(expectedData));
         }
+    }
+
+    protected List<WebElement> sortElementList(List<WebElement> sortedlist){
+        Comparator<WebElement> comparator = Comparator.comparing(WebElement::getText);
+        sortedlist.sort(comparator);
+        return sortedlist;
     }
 }

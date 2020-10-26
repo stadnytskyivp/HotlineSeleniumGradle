@@ -4,12 +4,8 @@ import com.hotline.pageobject.pages.ApplePhonesPage;
 import com.hotline.tests.BaseTest;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.Comparator;
-import java.util.List;
 
 public class ApplePhonesPageTest extends BaseTest {
     private final static String IPHONES = "Apple iPhone";
@@ -40,9 +36,6 @@ public class ApplePhonesPageTest extends BaseTest {
         applePhonesPage.getMainSort().click();
         applePhonesPage.getMainSortBoxItem(PRICE_RISING).click();
 
-        List<WebElement> sortedlist = applePhonesPage.getPhonePriceList();
-        Comparator<WebElement> comparator = Comparator.comparing(WebElement::getText);
-        sortedlist.sort(comparator);
-        Assert.assertEquals(applePhonesPage.getPhonePriceList(), sortedlist);
+        Assert.assertEquals(applePhonesPage.getPhonePriceList(), sortElementList(applePhonesPage.getPhonePriceList()));
     }
 }
