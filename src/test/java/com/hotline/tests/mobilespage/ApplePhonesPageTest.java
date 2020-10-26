@@ -8,6 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Comparator;
+import java.util.List;
+
 public class ApplePhonesPageTest extends BaseTest {
     private final static String IPHONES = "Apple iPhone";
     private final static int PRICE_RISING = 0;
@@ -37,12 +40,9 @@ public class ApplePhonesPageTest extends BaseTest {
         applePhonesPage.getMainSort().click();
         applePhonesPage.getMainSortBoxItem(PRICE_RISING).click();
 
-        int a = 0;
-        int b;
-        for (WebElement i: applePhonesPage.getPhonePriceList()) {
-            b = Integer.parseInt(i.getText().replaceAll("\\s+",""));    // removes empty spaces
-            Assert.assertTrue(a <= b);
-            a = b;
-        }
+        List<WebElement> sortedlist = applePhonesPage.getPhonePriceList();
+        Comparator<WebElement> comparator = Comparator.comparing(WebElement::getText);
+        sortedlist.sort(comparator);
+        Assert.assertEquals(applePhonesPage.getPhonePriceList(), sortedlist);
     }
 }
