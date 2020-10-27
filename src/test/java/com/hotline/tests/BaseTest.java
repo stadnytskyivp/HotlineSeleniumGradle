@@ -16,6 +16,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -64,29 +66,49 @@ public abstract class BaseTest {
         return wait.until((ExpectedCondition<Boolean>) driver -> {
             assert driver != null;
             return (Boolean) ((JavascriptExecutor) driver).executeScript(
-                    "var elem = arguments[0],                 " +
-                            "  box = elem.getBoundingClientRect(),    " +
-                            "  cx = box.left + box.width / 2,         " +
-                            "  cy = box.top + box.height / 2,         " +
-                            "  e = document.elementFromPoint(cx, cy); " +
-                            "for (; e; e = e.parentElement) {         " +
-                            "  if (e === elem)                        " +
-                            "    return true;                         " +
-                            "}                                        " +
-                            "return false;                            "
-                    , element);
+                "var elem = arguments[0],                 " +
+                    "  box = elem.getBoundingClientRect(),    " +
+                    "  cx = box.left + box.width / 2,         " +
+                    "  cy = box.top + box.height / 2,         " +
+                    "  e = document.elementFromPoint(cx, cy); " +
+                    "for (; e; e = e.parentElement) {         " +
+                    "  if (e === elem)                        " +
+                    "    return true;                         " +
+                    "}                                        " +
+                    "return false;                            "
+                , element);
         });
     }
 
     protected void checkElementsContent(List<WebElement> elements, String expectedData) {
-                for (WebElement i : elements) {
+        for (WebElement i : elements) {
             Assert.assertTrue(i.getText().contains(expectedData));
         }
     }
 
-    protected List<WebElement> sortElementList(List<WebElement> sortedlist){
+    protected List<WebElement> sortElementsByRising(List<WebElement> sortedlist) {
         Comparator<WebElement> comparator = Comparator.comparing(WebElement::getText);
         sortedlist.sort(comparator);
         return sortedlist;
+    }
+
+    protected List<WebElement> sortElementsByReducing(List<WebElement> sortedlist) {
+        Comparator<WebElement> comparator = Comparator.comparing(WebElement::getText).reversed();
+        sortedlist.sort(comparator);
+        return sortedlist;
+    }
+
+    protected List<Integer> sortIntegers(List<Integer> integerList) {
+        Comparator<Integer> comparator = Comparator.comparing(integer -> integer);
+        integerList.sort(comparator.reversed());
+        return integerList;
+    }
+
+    protected List<Integer> getDigitsFromString(List<WebElement> elements) throws NullPointerException {
+        List<Integer> integerList = new ArrayList();
+        for (WebElement element : elements) {
+            integerList.add(Integer.parseInt(element.getText().replaceAll("\\D+", "")));
+        }
+        return integerList;
     }
 }
