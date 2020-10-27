@@ -31,4 +31,10 @@ public class ReusableMethods {
             Assert.assertEquals(actualError.getText(), expectedErrors.get(actualErrors.indexOf(actualError)).getError());
         }
     }
+
+    public static void areElementsLessEqualThan(List<Integer> elements, int limit) {
+        for (Integer i : elements) {
+               Assert.assertTrue(i <= limit);
+        }
+    }
 }

@@ -1,10 +1,11 @@
 package com.hotline.tests.mobilespage;
 
+import com.hotline.helpers.ReusableMethods;
 import com.hotline.pageobject.pages.ApplePhonesPage;
 import com.hotline.tests.BaseTest;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -82,5 +83,49 @@ public class ApplePhonesPageTest extends BaseTest {
         applePhonesPage.getMainSortBoxItem(SORT_OFFERS).click();
         Assert.assertEquals(getDigitsFromString(applePhonesPage.getPhoneOfferList()),
             sortIntegers(getDigitsFromString(applePhonesPage.getPhoneOfferList())));
+    }
+
+    @Description("Verify that all selected filters are working")
+    @Test
+    public void checkFilters() {
+        Allure.step("Start test checking filters");
+        ApplePhonesPage applePhonesPage = openBrowser()
+            .gotoHomePage()
+            .gotoMobilePage()
+            .gotoApplePhonesPage();
+
+        Assert.assertTrue(applePhonesPage.getDisplayDiagonal().isDisplayed());
+        scrollTo(applePhonesPage.getDisplayDiagonal());
+        Assert.assertTrue(isVisibleInViewport(applePhonesPage.getDisplayDiagonal()));
+        applePhonesPage.getDisplayDiagonal().click();
+
+        Assert.assertTrue(applePhonesPage.getRam4().isDisplayed());
+        scrollTo(applePhonesPage.getRam4());
+        Assert.assertTrue(isVisibleInViewport(applePhonesPage.getRam4()));
+        applePhonesPage.getRam4().click();
+
+        Assert.assertTrue(applePhonesPage.getRom256().isDisplayed());
+        scrollTo(applePhonesPage.getRom256());
+        Assert.assertTrue(isVisibleInViewport(applePhonesPage.getRom256()));
+        applePhonesPage.getRom256().click();
+
+        Assert.assertTrue(applePhonesPage.getYear2019().isDisplayed());
+        scrollTo(applePhonesPage.getYear2019());
+        Assert.assertTrue(isVisibleInViewport(applePhonesPage.getYear2019()));
+        applePhonesPage.getYear2019().click();
+
+        Assert.assertTrue(applePhonesPage.getMaxPriceField().isDisplayed());
+        scrollTo(applePhonesPage.getMaxPriceField());
+        Assert.assertTrue(isVisibleInViewport(applePhonesPage.getMaxPriceField()));
+        applePhonesPage.setMaxPriceField("27000");
+        applePhonesPage.getPriseBtnOK().click();
+
+//        try {
+//            Thread.sleep(9000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+        ReusableMethods.areElementsLessEqualThan(getDigitsFromString(applePhonesPage.getPhonePriceList()), 27000);
     }
 }

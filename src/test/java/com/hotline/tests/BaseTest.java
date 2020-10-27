@@ -17,7 +17,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -107,8 +106,20 @@ public abstract class BaseTest {
     protected List<Integer> getDigitsFromString(List<WebElement> elements) throws NullPointerException {
         List<Integer> integerList = new ArrayList();
         for (WebElement element : elements) {
-            integerList.add(Integer.parseInt(element.getText().replaceAll("\\D+", "")));
+            try{
+                integerList.add(Integer.parseInt(element.getText().replaceAll("\\D+", "")));
+            }catch (NumberFormatException ignored){
+                System.out.println("NumberFormatException");
+            }
+
+        }
+        for (Integer j: integerList){
+            System.out.println(j);
         }
         return integerList;
+    }
+
+    protected void scrollTo(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 }

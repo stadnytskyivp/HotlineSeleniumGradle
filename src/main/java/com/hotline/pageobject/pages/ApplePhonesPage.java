@@ -1,13 +1,13 @@
 package com.hotline.pageobject.pages;
 
-import com.hotline.pageobject.modules.HeaderModule;
+import com.hotline.pageobject.modules.FilterModule;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class ApplePhonesPage extends HeaderModule {
+public class ApplePhonesPage extends FilterModule {
     private List<WebElement> phoneNameList;
     private WebElement mainSort;
     private WebElement mainSortBox;
