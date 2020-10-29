@@ -19,6 +19,8 @@ import org.testng.annotations.BeforeSuite;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -103,23 +105,33 @@ public abstract class BaseTest {
         return integerList;
     }
 
-    protected List<Integer> getDigitsFromString(List<WebElement> elements) throws NullPointerException {
+    protected List<Integer> getDigitsFromString(List<WebElement> elements) {
         List<Integer> integerList = new ArrayList();
         for (WebElement element : elements) {
-            try{
+            try {
                 integerList.add(Integer.parseInt(element.getText().replaceAll("\\D+", "")));
-            }catch (NumberFormatException ignored){
-                System.out.println("NumberFormatException");
+            } catch (RuntimeException ignored) {
             }
-
-        }
-        for (Integer j: integerList){
-            System.out.println(j);
         }
         return integerList;
     }
 
     protected void scrollTo(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    protected List<Double> getDescriptionPart(List<WebElement> elements, String partToLookFor, int getLetters) {
+        List<Double> parts = new ArrayList<>();
+        for (WebElement element : elements) {
+            int elementStartIndex = element.getText().indexOf(partToLookFor);
+            Pattern pattern = Pattern.compile("(\\d+(?:\\.\\d+))");
+            Matcher matcher = pattern.matcher(element.getText().substring(elementStartIndex, elementStartIndex + getLetters)
+                .replaceAll(",", "."));
+            while (matcher.find()) {
+                double displayDiagonal = Double.parseDouble(matcher.group(1));
+                parts.add(displayDiagonal);
+            }
+        }
+        return parts;
     }
 }

@@ -65,7 +65,7 @@ public abstract class HeaderModule {
         return new HomePage(driver);
     }
 
-    public WebElement getChooseLanguage() {
+    public WebElement getChooseLanguageUkr() {
         chooseLanguage = driver.findElement(By.xpath("//*[@data-language='uk'][1]"));
         return chooseLanguage;
     }

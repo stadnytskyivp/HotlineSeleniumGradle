@@ -34,7 +34,13 @@ public class ReusableMethods {
 
     public static void areElementsLessEqualThan(List<Integer> elements, int limit) {
         for (Integer i : elements) {
-               Assert.assertTrue(i <= limit);
+            Assert.assertTrue(i <= limit);
+        }
+    }
+
+    public static void areElementsInBetween(List<Double> elements, double min, double max) {
+        for (Double element : elements) {
+            Assert.assertTrue(element >= min && element<=max);
         }
     }
 }

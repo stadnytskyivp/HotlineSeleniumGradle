@@ -13,6 +13,7 @@ public class ApplePhonesPage extends FilterModule {
     private WebElement mainSortBox;
     private List<WebElement> phonePriceList;
     private List<WebElement> phoneOfferList;
+    private List<WebElement> phoneDescriptionList;
 
     ApplePhonesPage(WebDriver driver) {
         super(driver);
@@ -41,5 +42,10 @@ public class ApplePhonesPage extends FilterModule {
     public List<WebElement> getPhoneOfferList() {
         phoneOfferList = driver.findElements(By.cssSelector("[data-tracking-id=catalog-12]"));
         return phoneOfferList;
+    }
+
+    public List<WebElement> getPhoneDescriptionList() {
+        phoneDescriptionList = driver.findElements(By.cssSelector(".item-info .text .text p"));
+        return phoneDescriptionList;
     }
 }

@@ -5,7 +5,6 @@ import com.hotline.pageobject.pages.ApplePhonesPage;
 import com.hotline.tests.BaseTest;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,6 +14,8 @@ public class ApplePhonesPageTest extends BaseTest {
     private final static int SORT_PRICE_REDUCTION = 1;
     private final static int SORT_NAME = 5;
     private final static int SORT_OFFERS = 6;
+    private final static int MAX_PRICE = 27000;
+    private final static String LOOK_FOR_DISPLAY = "екран: ";
 
     @Description("Verify that all devices in the list have required brand name")
     @Test
@@ -87,13 +88,14 @@ public class ApplePhonesPageTest extends BaseTest {
 
     @Description("Verify that all selected filters are working")
     @Test
-    public void checkFilters() {
+    public void checkFiltersTest() {
         Allure.step("Start test checking filters");
         ApplePhonesPage applePhonesPage = openBrowser()
             .gotoHomePage()
             .gotoMobilePage()
             .gotoApplePhonesPage();
 
+        applePhonesPage.getChooseLanguageUkr().click();
         Assert.assertTrue(applePhonesPage.getDisplayDiagonal().isDisplayed());
         scrollTo(applePhonesPage.getDisplayDiagonal());
         Assert.assertTrue(isVisibleInViewport(applePhonesPage.getDisplayDiagonal()));
@@ -117,15 +119,14 @@ public class ApplePhonesPageTest extends BaseTest {
         Assert.assertTrue(applePhonesPage.getMaxPriceField().isDisplayed());
         scrollTo(applePhonesPage.getMaxPriceField());
         Assert.assertTrue(isVisibleInViewport(applePhonesPage.getMaxPriceField()));
-        applePhonesPage.setMaxPriceField("27000");
+        applePhonesPage.setMaxPriceField(String.valueOf(MAX_PRICE));
         applePhonesPage.getPriseBtnOK().click();
 
-//        try {
-//            Thread.sleep(9000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        getDriver().navigate().refresh();
 
-        ReusableMethods.areElementsLessEqualThan(getDigitsFromString(applePhonesPage.getPhonePriceList()), 27000);
+        ReusableMethods.areElementsInBetween(getDescriptionPart(
+            applePhonesPage.getPhoneDescriptionList(), LOOK_FOR_DISPLAY, 4), 6.01, 6.39);
+
+        ReusableMethods.areElementsLessEqualThan(getDigitsFromString(applePhonesPage.getPhonePriceList()), MAX_PRICE);
     }
 }
