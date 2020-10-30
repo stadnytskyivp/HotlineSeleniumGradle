@@ -120,18 +120,29 @@ public abstract class BaseTest {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    protected List<Double> getDescriptionPart(List<WebElement> elements, String partToLookFor, int getLetters) {
-        List<Double> parts = new ArrayList<>();
+    protected List<Double> getDescriptionPartDouble(List<WebElement> elements, String partToLookFor, int getNumberOfLetters) {
+        List<Double> diagonalsList = new ArrayList<>();
         for (WebElement element : elements) {
             int elementStartIndex = element.getText().indexOf(partToLookFor);
             Pattern pattern = Pattern.compile("(\\d+(?:\\.\\d+))");
-            Matcher matcher = pattern.matcher(element.getText().substring(elementStartIndex, elementStartIndex + getLetters)
-                .replaceAll(",", "."));
+            String str = element.getText().substring(elementStartIndex, elementStartIndex + partToLookFor.length() + getNumberOfLetters);
+            Matcher matcher = pattern.matcher(str.replaceAll(",", "."));
             while (matcher.find()) {
                 double displayDiagonal = Double.parseDouble(matcher.group(1));
-                parts.add(displayDiagonal);
+                diagonalsList.add(displayDiagonal);
             }
         }
-        return parts;
+        return diagonalsList;
+    }
+
+    protected List<Integer> getDescriptionPartInt(List<WebElement> elements, String partToLookFor, int getNumberOfLetters) {
+        List<Integer> elementList = new ArrayList<>();
+        for (WebElement element : elements) {
+            int elementStartIndex = element.getText().indexOf(partToLookFor);
+            elementList.add(Integer.parseInt(element.getText().substring(
+                elementStartIndex, elementStartIndex + partToLookFor.length() + getNumberOfLetters)
+                .replaceAll("\\D+", "")));
+        }
+        return elementList;
     }
 }

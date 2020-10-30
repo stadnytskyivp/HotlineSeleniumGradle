@@ -16,6 +16,9 @@ public class ApplePhonesPageTest extends BaseTest {
     private final static int SORT_OFFERS = 6;
     private final static int MAX_PRICE = 27000;
     private final static String LOOK_FOR_DISPLAY = "екран: ";
+    private final static String LOOK_FOR_RAM = "оперативна пам'ять: ";
+    private final static String LOOK_FOR_ROM = "вбудована пам'ять: ";
+    private final static int LOOK_FOR_YEAR = 2019;
 
     @Description("Verify that all devices in the list have required brand name")
     @Test
@@ -124,9 +127,14 @@ public class ApplePhonesPageTest extends BaseTest {
 
         getDriver().navigate().refresh();
 
-        ReusableMethods.areElementsInBetween(getDescriptionPart(
+        ReusableMethods.areElementsInBetween(getDescriptionPartDouble(
             applePhonesPage.getPhoneDescriptionList(), LOOK_FOR_DISPLAY, 4), 6.01, 6.39);
-
+        ReusableMethods.areElementsEqual(getDescriptionPartInt(
+            applePhonesPage.getPhoneDescriptionList(), LOOK_FOR_RAM, 2), 4);
+        ReusableMethods.areElementsEqual(getDescriptionPartInt(
+            applePhonesPage.getPhoneDescriptionList(), LOOK_FOR_ROM, 4), 256);
+        ReusableMethods.areElementsEqual(getDescriptionPartInt(
+            applePhonesPage.getPhoneDescriptionList(), String.valueOf(LOOK_FOR_YEAR), 4), LOOK_FOR_YEAR);
         ReusableMethods.areElementsLessEqualThan(getDigitsFromString(applePhonesPage.getPhonePriceList()), MAX_PRICE);
     }
 }
