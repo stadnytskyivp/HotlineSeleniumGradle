@@ -20,7 +20,7 @@ public class ApplePhonesPage extends FilterModule {
     }
 
     public List<WebElement> getPhoneNameList() {
-        phoneNameList = driver.findElements(By.xpath("//*[@class='item-info']/p/a"));
+        phoneNameList = driver.findElements(By. cssSelector("[data-tracking-id=catalog-10]"));
         return phoneNameList;
     }
 

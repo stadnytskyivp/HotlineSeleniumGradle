@@ -88,14 +88,12 @@ public abstract class BaseTest {
     }
 
     protected List<WebElement> sortElementsByRising(List<WebElement> sortedlist) {
-        Comparator<WebElement> comparator = Comparator.comparing(WebElement::getText);
-        sortedlist.sort(comparator);
+        sortedlist.sort(Comparator.comparing(WebElement::getText));
         return sortedlist;
     }
 
     protected List<WebElement> sortElementsByReducing(List<WebElement> sortedlist) {
-        Comparator<WebElement> comparator = Comparator.comparing(WebElement::getText).reversed();
-        sortedlist.sort(comparator);
+        sortedlist.sort(Comparator.comparing(WebElement::getText).reversed());
         return sortedlist;
     }
 
@@ -108,10 +106,7 @@ public abstract class BaseTest {
     protected List<Integer> getDigitsFromString(List<WebElement> elements) {
         List<Integer> integerList = new ArrayList();
         for (WebElement element : elements) {
-            try {
-                integerList.add(Integer.parseInt(element.getText().replaceAll("\\D+", "")));
-            } catch (RuntimeException ignored) {
-            }
+            integerList.add(Integer.parseInt(element.getText().replaceAll("\\D+", "")));
         }
         return integerList;
     }

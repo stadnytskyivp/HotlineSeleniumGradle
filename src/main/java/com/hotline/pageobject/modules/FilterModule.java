@@ -37,7 +37,7 @@ public abstract class FilterModule extends HeaderModule {
     }
 
     public WebElement getMaxPriceField() {
-        maxPriceField = driver.findElement(By.xpath("//*[@class='nowrap m_b-lg']/*[@data-price-max]"));
+        maxPriceField = driver.findElement(By.cssSelector("[data-price-max]"));
         return maxPriceField;
     }
 

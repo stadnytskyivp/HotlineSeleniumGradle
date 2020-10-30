@@ -15,7 +15,7 @@ public class RegistrationFinalPage {
     }
 
     public WebElement getCodeField() {
-        codeField = driver.findElement(By.xpath("//*[@type='code']"));
+        codeField = driver.findElement(By.cssSelector("[type='code']"));
         return codeField;
     }
 

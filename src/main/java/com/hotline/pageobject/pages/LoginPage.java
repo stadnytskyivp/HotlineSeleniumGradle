@@ -15,17 +15,17 @@ public class LoginPage extends AuthorizationPage {
     }
 
     public WebElement getSubmitBtn() {
-        submitBtn = driver.findElement(By.xpath("//*[@data-id='verification']"));
+        submitBtn = driver.findElement(By.cssSelector("[data-id='verification']"));
         return submitBtn;
     }
 
     public WebElement getForgotPasswordLink() {
-        forgotPasswordLink = driver.findElement(By.xpath("//*[@href='/reminder/']"));
+        forgotPasswordLink = driver.findElement(By.cssSelector("[href='/reminder/']"));
         return forgotPasswordLink;
     }
 
     public WebElement getRegisterLink() {
-        registerLink = driver.findElement(By.xpath("//*[@href='/register/']"));
+        registerLink = driver.findElement(By.cssSelector("[href='/register/']"));
         return registerLink;
     }
 

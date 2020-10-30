@@ -33,21 +33,21 @@ public class ReusableMethods {
     }
 
     public static void areElementsLessEqualThan(List<Integer> elements, int limit) {
-        if (elements.size() == 0) throw new IllegalArgumentException("empty list of elements");
+        if (elements.isEmpty()) throw new IllegalArgumentException("empty list of elements");
         for (Integer i : elements) {
             Assert.assertTrue(i <= limit);
         }
     }
 
     public static void areElementsInBetween(List<Double> elements, double min, double max) {
-        if (elements.size() == 0) throw new IllegalArgumentException("empty list of elements");
+        if (elements.isEmpty()) throw new IllegalArgumentException("empty list of elements");
         for (Double element : elements) {
             Assert.assertTrue(element >= min & element <= max);
         }
     }
 
     public static void areElementsEqual(List<Integer> elements, int limit) {
-        if (elements.size() == 0) throw new IllegalArgumentException("empty list of elements");
+        if (elements.isEmpty()) throw new IllegalArgumentException("empty list of elements");
         for (Integer element : elements) {
             Assert.assertEquals(element.intValue(), limit);
         }

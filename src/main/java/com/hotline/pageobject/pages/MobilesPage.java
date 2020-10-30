@@ -8,8 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class MobilesPage extends HeaderModule {
-    private WebElement headerTitle;
-    private List<WebElement> categories;
+        private List<WebElement> categories;
     private WebElement categorySmartphones;
     private WebElement categoryWatchesBands;
     private WebElement categoryChargers;
@@ -21,11 +20,6 @@ public class MobilesPage extends HeaderModule {
         super(driver);
     }
 
-    public WebElement getHeaderTitle() {
-        headerTitle = driver.findElement(By.xpath("//h1/i[@class='icon-menu icon-menu-mobile']"));
-        return headerTitle;
-    }
-
     public List<WebElement> getCategories() {
         categories = driver.findElements(By.cssSelector(".category-navigation-item"));
         return categories;
@@ -33,31 +27,31 @@ public class MobilesPage extends HeaderModule {
 
     public WebElement getCategoryComponentsForPhones() {
         categoryComponentsForPhones = driver.findElement(
-            By.xpath("//h2[@data-scroll-smooth-to-element-to='komplektuyuschie-dlya-telefonov-i-smartfonov']"));
+            By.cssSelector("[data-scroll-smooth-to-element-to='komplektuyuschie-dlya-telefonov-i-smartfonov']"));
         return categoryComponentsForPhones;
     }
 
     public WebElement getCategorySmartphones() {
         categorySmartphones = driver.findElement(
-            By.xpath("//h2[@data-scroll-smooth-to-element-to='telefony-i-garnitury']"));
+            By.cssSelector("[data-scroll-smooth-to-element-to='telefony-i-garnitury']"));
         return categorySmartphones;
     }
 
     public WebElement getCategoryWatchesBands() {
         categoryWatchesBands = driver.findElement(
-            By.xpath("//h2[@data-scroll-smooth-to-element-to='smart-chasy-i-fitnes-braslety']"));
+            By.cssSelector("[data-scroll-smooth-to-element-to='smart-chasy-i-fitnes-braslety']"));
         return categoryWatchesBands;
     }
 
     public WebElement getCategoryChargers() {
         categoryChargers = driver.findElement(
-            By.xpath("//h2[@data-scroll-smooth-to-element-to='zaryadka-i-sinhronizaciya']"));
+            By.cssSelector("[data-scroll-smooth-to-element-to='zaryadka-i-sinhronizaciya']"));
         return categoryChargers;
     }
 
     public WebElement getCategoryAccessories() {
         categoryAccessories = driver.findElement(
-            By.xpath("//h2[@data-scroll-smooth-to-element-to='dopolnitelnoe-oborudovanie-i-aksessuary']"));
+            By.cssSelector("[data-scroll-smooth-to-element-to='dopolnitelnoe-oborudovanie-i-aksessuary']"));
         return categoryAccessories;
     }
 
