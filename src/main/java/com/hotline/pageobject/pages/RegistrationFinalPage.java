@@ -12,11 +12,10 @@ public class RegistrationFinalPage {
 
     public RegistrationFinalPage(WebDriver driver) {
         this.driver = driver;
-        headerLogoLink = driver.findElement(By.cssSelector(".header-short"));
-        codeField = driver.findElement(By.xpath("//*[@type='code']"));
     }
 
     public WebElement getCodeField() {
+        codeField = driver.findElement(By.cssSelector("[type='code']"));
         return codeField;
     }
 
@@ -25,6 +24,7 @@ public class RegistrationFinalPage {
     }
 
     public WebElement getHeaderLogoLink() {
+        headerLogoLink = driver.findElement(By.cssSelector(".header-short"));
         return headerLogoLink;
     }
 

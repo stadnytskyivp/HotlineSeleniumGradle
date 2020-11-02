@@ -13,20 +13,20 @@ public abstract class AuthorizationPage {
 
     protected AuthorizationPage (WebDriver driver) {
         this.driver = driver;
-        loginField = driver.findElement(By.name("login"));
-        passwordField = driver.findElement(By.name("password"));
-        headerLogoLink = driver.findElement(By.cssSelector(".header-short"));
     }
 
     public WebElement getHeaderLogoLink() {
+        headerLogoLink = driver.findElement(By.cssSelector(".header-short"));
         return headerLogoLink;
     }
 
     public WebElement getLoginField() {
+        loginField = driver.findElement(By.name("login"));
         return loginField;
     }
 
     public WebElement getPasswordField() {
+        passwordField = driver.findElement(By.name("password"));
         return passwordField;
     }
 

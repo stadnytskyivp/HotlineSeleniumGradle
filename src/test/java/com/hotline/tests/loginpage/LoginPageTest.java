@@ -33,5 +33,10 @@ public class LoginPageTest extends BaseTest {
         loginPage.getLoginField().sendKeys(UserInfo.myUser().getLogin());
         loginPage.getPasswordField().sendKeys(UserInfo.myUser().getPassword());
         loginPage.getSubmitBtn().click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
