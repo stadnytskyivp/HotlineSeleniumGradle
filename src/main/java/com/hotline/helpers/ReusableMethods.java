@@ -52,4 +52,8 @@ public class ReusableMethods {
             Assert.assertEquals(element.intValue(), limit);
         }
     }
+
+    public static String getProductName(String productName) {
+        return productName.substring(0, productName.indexOf("("));
+    }
 }
