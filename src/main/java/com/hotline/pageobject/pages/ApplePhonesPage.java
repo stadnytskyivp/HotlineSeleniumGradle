@@ -15,6 +15,7 @@ public class ApplePhonesPage extends FilterModule {
     private List<WebElement> phoneOfferList;
     private List<WebElement> phoneDescriptionList;
     private WebElement sortBuyOnHotline;
+    private List<WebElement> compareCheckboxes;
 
     ApplePhonesPage(WebDriver driver) {
         super(driver);
@@ -67,5 +68,10 @@ public class ApplePhonesPage extends FilterModule {
     public ProductPage selectProduct(int productNumber) {
         getPhoneNameList().get(productNumber).click();
         return gotoProductPage();
+    }
+
+    public List<WebElement> getCompareCheckboxes() {
+        compareCheckboxes = driver.findElements(By.cssSelector(".product-item .type-checkbox.checkbox-compare"));
+        return compareCheckboxes;
     }
 }

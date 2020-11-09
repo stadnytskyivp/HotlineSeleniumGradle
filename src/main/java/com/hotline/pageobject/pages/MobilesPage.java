@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class MobilesPage extends HeaderModule {
-        private List<WebElement> categories;
+    private List<WebElement> categories;
     private WebElement categorySmartphones;
     private WebElement categoryWatchesBands;
     private WebElement categoryChargers;

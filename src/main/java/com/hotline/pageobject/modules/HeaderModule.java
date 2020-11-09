@@ -1,11 +1,14 @@
 package com.hotline.pageobject.modules;
 
+import com.hotline.pageobject.pages.ComparePage;
 import com.hotline.pageobject.pages.HomePage;
 import com.hotline.pageobject.pages.LoginPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
 
 public abstract class HeaderModule {
     protected WebDriver driver;
@@ -14,12 +17,14 @@ public abstract class HeaderModule {
     private WebElement cityNameLink;
     private WebElement chooseLanguage;
     private WebElement loginUserLink;
-    private WebElement compareItemsLink;
+    private WebElement compareItemsButton;
     private WebElement wishListLink;
     private WebElement itemCartLink;
     private WebElement searchTopButton;
     private WebElement searchTopField;
     private WebElement productCatalog;
+    private WebElement compareItemsLink;
+    private WebElement itemsInCompareDropDown;
 
     public HeaderModule(WebDriver driver) {
         this.driver = driver;
@@ -40,9 +45,9 @@ public abstract class HeaderModule {
         return loginUserLink;
     }
 
-    public WebElement getCompareItemsLink() {
-        compareItemsLink = driver.findElement(By.cssSelector(".item-compare"));
-        return compareItemsLink;
+    public WebElement getCompareItemsButton() {
+        compareItemsButton = driver.findElement(By.cssSelector(".item-compare"));
+        return compareItemsButton;
     }
 
     public WebElement getWishListLink() {
@@ -85,6 +90,16 @@ public abstract class HeaderModule {
         return productCatalog;
     }
 
+    public WebElement getCompareItemsLink() {
+        compareItemsLink = driver.findElement(By.cssSelector("[data-dropdown-id='compare'] [target='_blank']"));
+        return compareItemsLink;
+    }
+
+    public WebElement getItemsInCompareDropDown() {
+        itemsInCompareDropDown = driver.findElement(By.cssSelector("[data-dropdown-id='compare'] [target='_blank']"));
+        return itemsInCompareDropDown;
+    }
+
     public void clickLogin() {
         getLoginUserLink().click();
     }
@@ -93,5 +108,14 @@ public abstract class HeaderModule {
     public LoginPage gotoLoginPage() {
         clickLogin();
         return new LoginPage(driver);
+    }
+
+    @Step("Going to the comparing page")
+    public ComparePage gotoComparePage() {
+        getCompareItemsButton().click();
+        getItemsInCompareDropDown().click();
+        ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
+//        driver.switchTo().window(newTab.get(1));
+        return new ComparePage(driver.switchTo().window(newTab.get(1)));
     }
 }
