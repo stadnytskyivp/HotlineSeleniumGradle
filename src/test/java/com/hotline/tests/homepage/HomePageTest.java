@@ -17,7 +17,7 @@ public class HomePageTest extends BaseTest {
 
         Assert.assertTrue(homePage.getLogoLink().isDisplayed(), "expecting to see top left logo image");
         Assert.assertTrue(homePage.getCityNameLink().isDisplayed(), "expecting to see city name link");
-        Assert.assertTrue(homePage.getCompareItemsLink().isDisplayed(), "expecting to see compare items link");
+        Assert.assertTrue(homePage.getCompareItemsButton().isDisplayed(), "expecting to see compare items link");
         Assert.assertTrue(homePage.getItemCartLink().isDisplayed(), "expecting to see shopping cart link");
         Assert.assertTrue(homePage.getLoginUserLink().isDisplayed(), "expecting to see login user link");
         Assert.assertTrue(homePage.getWishListLink().isDisplayed(), "expecting to see wish list link");

@@ -14,13 +14,15 @@ public class ApplePhonesPage extends FilterModule {
     private List<WebElement> phonePriceList;
     private List<WebElement> phoneOfferList;
     private List<WebElement> phoneDescriptionList;
+    private WebElement sortBuyOnHotline;
+    private List<WebElement> compareCheckboxes;
 
     ApplePhonesPage(WebDriver driver) {
         super(driver);
     }
 
     public List<WebElement> getPhoneNameList() {
-        phoneNameList = driver.findElements(By. cssSelector("[data-tracking-id=catalog-10]"));
+        phoneNameList = driver.findElements(By.cssSelector("[data-tracking-id=catalog-10]"));
         return phoneNameList;
     }
 
@@ -47,5 +49,29 @@ public class ApplePhonesPage extends FilterModule {
     public List<WebElement> getPhoneDescriptionList() {
         phoneDescriptionList = driver.findElements(By.cssSelector(".item-info .text .text p"));
         return phoneDescriptionList;
+    }
+
+    public WebElement getSortBuyOnHotline() {
+        sortBuyOnHotline = driver.findElement(By.cssSelector(".sorting.clearfix .icon.icon-cart"));
+        return sortBuyOnHotline;
+    }
+
+    public ApplePhonesPage selectSortBuyOnHotline() {
+        getSortBuyOnHotline().click();
+        return new ApplePhonesPage(driver);
+    }
+
+    private ProductPage gotoProductPage() {
+        return new ProductPage(driver);
+    }
+
+    public ProductPage selectProduct(int productNumber) {
+        getPhoneNameList().get(productNumber).click();
+        return gotoProductPage();
+    }
+
+    public List<WebElement> getCompareCheckboxes() {
+        compareCheckboxes = driver.findElements(By.cssSelector(".product-item .type-checkbox.checkbox-compare"));
+        return compareCheckboxes;
     }
 }

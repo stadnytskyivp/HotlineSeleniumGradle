@@ -3,10 +3,13 @@ package com.hotline.helpers;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class ReusableMethods {
+    private static final int MAX_SYMBOLS_NAME = 37;
+
     public static String getRandomUsername() {
         Random random = new Random();
         return Long.toString(Math.abs(random.nextLong() % 3656158440062976L), 36);
@@ -50,6 +53,28 @@ public class ReusableMethods {
         if (elements.isEmpty()) throw new IllegalArgumentException("empty list of elements");
         for (Integer element : elements) {
             Assert.assertEquals(element.intValue(), limit);
+        }
+    }
+
+    public static String getProductName(String productName) {
+        return productName.substring(0, productName.indexOf("("));
+    }
+
+    public static List<String> getProductName(List<WebElement> productNames, int howMuchElements) {
+        List<String> listOfNames = new ArrayList<>();
+        for (int i = 0; i < howMuchElements; i++) {
+            if (productNames.get(i).getText().contains("(") & (productNames.get(i).getText().length() < MAX_SYMBOLS_NAME)) {
+                listOfNames.add(productNames.get(i).getText().substring(0, productNames.get(i).getText().indexOf("(")));
+            } else {
+                listOfNames.add(productNames.get(i).getText().substring(0, MAX_SYMBOLS_NAME));
+            }
+        }
+        return listOfNames;
+    }
+
+    public static void clickOnElements(List<WebElement> elements, int howMuchElements) {
+        for (int i = 0; i < howMuchElements; i++) {
+            elements.get(i).click();
         }
     }
 }
